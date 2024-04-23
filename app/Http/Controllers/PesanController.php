@@ -1,50 +1,101 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\Models\Pesan;
+use Illuminate\Http\Request;
 
 class PesanController extends Controller
 {
-    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $pesans = Pesan::all();
+        return view('dashboard.pesan', [
+            "title" => "Pesanan",
+            "active" => 'pesan'
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('dashboard.tambahpesan',[
+            "title" => "Tambah Pesanan",
+            "active" => 'pesan'
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'jenislap' => 'required|string|max:155',
-            'tglmain' => 'required',
-            'jam' => 'required',
-            'durasi' => 'required'
+        $request->validate([
+            'jenislap' => 'required',
+            'tglmain' => 'required|date',
+            'jam' => 'required|date_format:H:i',
+            'durasi' => 'required|integer',
         ]);
 
-        $pesan = Pesan::create([
-            'jenislap' => $request->jenislap,
-            'tglmain' => $request->tglmain,
-            'jam' => $request->jam,
-            'durasi' => $request->durasi,
-            
-        ]);
+        Pesan::create($request->all());
 
-        if ($pesan) {
-            return redirect()
-                ->route('pesan')
-                ->with([
-                    'success' => 'Pesanan berhasil ditambah'
-                ]);
-        } else {
-            return redirect()
-                ->back()
-                ->withInput()
-                ->with([
-                    'error' => 'Some problem occurred, please try again'
-                ]);
-        }
+        return redirect()->route('dashboard.pesan')
+            ->with('success', 'Pesan lapangan berhasil dibuat.');
     }
-    
-    public function showPesan()
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-    $pesan = Pesan::all(); // Mengambil semua pesan dari model Pesan
-    return view('dashboard.pesan', compact('pesan')); // Mengirim variabel $pesan ke view
+        //
     }
-    
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
 }
