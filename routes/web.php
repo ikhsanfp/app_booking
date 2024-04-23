@@ -16,81 +16,25 @@ use App\Http\Controllers\PesanController;
 |
 */
 
-Route::get('/', function () {
-    return view('home',[
-        "title" => "Home",
-        "active" => 'home'
-    ]);
-});
+Route::get('/', [HomeController::class, 'home']);
+    
+Route::get('/home', [HomeController::class, 'dashboard']);
 
-Route::get('/home', function () {
-    return view('dashboard.index',[
-        "title" => "Home",
-        "active" => 'home'
-    ]);
-});
+Route::get('/admin', [HomeController::class, 'dashboardadmin']);
 
-Route::get('/admin', function () {
-    return view('dashboard.admin.index',[
-        "title" => "Home",
-        "active" => 'home'
-    ]);
-});
+Route::get('/pesanmasuk', [PesanController::class, 'pesanmasuk']);
 
-Route::get('/pesanmasuk', function () {
-    return view('dashboard.admin.pesanmasuk',[
-        "title" => "Pesan Masuk",
-        "active" => 'pesan'
-    ]);
-});
+Route::get('/lapadmin', [LaporanController::class, 'laporanadmin']);
 
-Route::get('/lapadmin', function () {
-    return view('dashboard.admin.laporan',[
-        "title" => "Laporan",
-        "active" => 'laporan'
-    ]);
-});
+Route::get('/panduan', [PanduanController::class, 'panduan']);
 
-Route::get('/panduan', function () {
-    return view('dashboard.panduan',[
-        "title" => "Panduan",
-        "active" => 'panduan'
-    ]);
-});
+Route::get('/laporan', [LaporanController::class, 'laporan']);
 
-Route::get('/pesan', function () {
-    return view('dashboard.pesan',[
-        "title" => "Pesanan",
-        "active" => 'pesan'
-    ]);
-});
+// Route::get('/pesan', [PesanController::class, 'index']);
 
-Route::get('/laporan', function () {
-    return view('dashboard.laporan',[
-        "title" => "Laporan",
-        "active" => 'laporan'
-    ]);
-});
+// Route::get('/tambahpesan', [TambahPesanController::class, 'tambahpesan']);
 
-Route::get('/tambahpesan', function () {
-    return view('dashboard.tambahpesan',[
-        "title" => "Tambah Pesanan",
-        "active" => 'pesan'
-    ]);
-});
-Route::get('/login', function () {
-    return view('login.index',[
-        "title" => "Login"
-    ]);
-});
-
-Route::get('/register', function () {
-    return view('register.index',[
-        "title" => "Register"
-    ]);
-});
-
-Route::post('/addpesan', [PesanController::class, 'store']);
+// Route::post('/addpesan', [PesanController::class, 'store']);
 
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
 Route::post('/login/store', [LoginController::class, 'store']);
@@ -103,3 +47,12 @@ Route::get('/dashboard', function(){
     return view('dashboard.index');
 })->middleware('auth');
 
+
+
+Route::get('/tambahpesan', [PesanController::class, 'create'])->name('pesan.create');
+
+// Route untuk menyimpan pesan lapangan baru
+Route::post('/addpesan', [PesanController::class, 'store'])->name('pesan.store');
+
+// Route untuk menampilkan daftar pesan lapangan
+Route::get('/pesan', [PesanController::class, 'index'])->name('dashboard.pesan');
