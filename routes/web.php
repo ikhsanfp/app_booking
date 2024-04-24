@@ -111,3 +111,4 @@ Route::post('/addpesan', [PesanController::class, 'store'])->name('pesan.store')
 
 // Route untuk menampilkan daftar pesan lapangan
 Route::get('/pesan', [PesanController::class, 'index'])->name('dashboard.pesan');
+Route::get('/pesan', 'PesanController@index')->name('pesan.index');
