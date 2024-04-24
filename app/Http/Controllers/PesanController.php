@@ -14,14 +14,16 @@ class PesanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // Mendapatkan query pencarian dari inputan form
-        // $query = $request->input('q'); 
+        // $query = $request->input('q');
 
         // Mencari pesan berdasarkan nama jika query pencarian diberikan
 
-        // $pesan = $query ? Pesan::where('jenislap', 'Lapangan Futsal', '%' . $query . '%')->get() : Pesan::all();
+        // $lapanganfutsal = Pesan::where('jenislap', 'Lapangan Futsal', '%' . $query . '%')->get();
+        // dd($pesan);
+
         $pesan = Pesan::all();
         return view('dashboard.pesan', [
             "title" => "Pesanan",
