@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Pesan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controllerl;
 
 class PesanController extends Controller
 {
@@ -13,10 +16,11 @@ class PesanController extends Controller
      */
     public function index()
     {
-        $pesans = Pesan::all();
+        $pesan = Pesan::all();
         return view('dashboard.pesan', [
             "title" => "Pesanan",
-            "active" => 'pesan'
+            "active" => 'pesan',
+            "pesan" => $pesan // Melewatkan data pesan ke tampilan
         ]);
     }
 
@@ -27,9 +31,11 @@ class PesanController extends Controller
      */
     public function create()
     {
-        return view('dashboard.tambahpesan',[
+        $id_pemain = Auth::user()->id;
+        return view('dashboard.tambahpesan', [
             "title" => "Tambah Pesanan",
-            "active" => 'pesan'
+            "active" => 'pesan',
+            'id_pemain' => $id_pemain
         ]);
     }
 
@@ -41,17 +47,18 @@ class PesanController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'jenislap' => 'required',
-            'tglmain' => 'required|date',
-            'jam' => 'required|date_format:H:i',
-            'durasi' => 'required|integer',
+            'tglmain' => 'required',
+            'start' => 'required',
+            'end' => 'required',
+            'id_pemain' => 'required',
         ]);
-
-        Pesan::create($request->all());
-
-        return redirect()->route('dashboard.pesan')
-            ->with('success', 'Pesan lapangan berhasil dibuat.');
+        // dd($validateData);
+        Pesan::create($validateData);
+        return redirect('/pesan');
+        // return redirect()->route('dashboard.pesan')
+        //     ->with('success', 'Pesan lapangan berhasil dibuat.');
     }
 
     /**

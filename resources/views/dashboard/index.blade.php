@@ -21,10 +21,12 @@
             </tr>
           </thead>
           <tbody class="">
+            @foreach ($pesan as $post)
             <tr>
-                <th class="font-semibold h-8 w-40 border border-gray-500"></th>
-                <th class="font-semibold h-8 w-40 border border-gray-500"></th>
-            </tr>
+                <th class="font-semibold h-8 w-40 border border-gray-500">{{ $post->profile->namapemain }}</th>
+                <th class="font-semibold h-8 w-40 border border-gray-500">{{ Carbon\Carbon::parse($post->time)->format('H:i') }} - {{ Carbon\Carbon::parse($post->times)->format('H:i') }}</th>
+              </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
