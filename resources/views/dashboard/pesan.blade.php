@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.main')
 @section('container')
-<form action="{{ route('pesan.index') }}" method="GET">
+{{-- <form action="{{ route('pesan.index') }}" method="GET">
   <div class="form-group">
       <input type="text" name="q" class="form-control" placeholder="Cari berdasarkan nama" value="{{ $query }}">
   </div>
@@ -24,8 +24,8 @@
       </tr>
       @endforeach
   </tbody>
-</table>
-{{-- <div>
+</table> --}}
+<div>
     <h3 class="font-bold ml-12 text-left mt-16 mb-5">List Pesananmu</h3>
 </div>
 <div>
@@ -46,7 +46,7 @@
     @foreach ($pesan as $post)
       <tr>
           <th class="h-8 w-20 border border-gray-500">{{ $post->id }}</th>
-          <th class="h-8 w-48 border border-gray-500">{{ $post->jenislap-> }}</th>
+          <th class="h-8 w-48 border border-gray-500">{{ $post->jenislap}}</th>
           <th class="h-8 w-48 border border-gray-500">{{ $post->tglmain }}</th>
           <th class="h-8 w-48 border border-gray-500">{{ Carbon\Carbon::parse($post->start)->format('H:i') }} - {{ Carbon\Carbon::parse($post->end)->format('H:i') }}</th>
           <th class="h-8 w-20 border border-gray-500">{{ $post->profile->namapemain }}</th>
@@ -54,5 +54,5 @@
         </tr>
       @endforeach
   </tbody>
-</table> --}}
+</table>
 @endsection
