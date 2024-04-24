@@ -19,20 +19,20 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-Route::get('/', function () {
-    return view('home', [
-        "title" => "Home",
-        "active" => 'home'
-    ]);
-});
+// Route::get('/', function () {
+//     return view('home', [
+//         "title" => "Home",
+//         "active" => 'home'
+//     ]);
+// });
 
-Route::get('/home', function () {
-    return view('dashboard.index', [
-        "title" => "Home",
-        "active" => 'home'
-    ]);
-});
-
+// Route::get('/home', function () {
+//     return view('dashboard.index', [
+//         "title" => "Home",
+//         "active" => 'home'
+//     ]);
+// });
+Route::get('/', [HomeController::class, 'home']);
 Route::get('/home', [HomeController::class, 'index']);
 
 Route::get('/admin', function () {

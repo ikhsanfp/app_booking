@@ -18,13 +18,16 @@ class HomeController extends Controller
         ]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $pesan = Pesan::all();
+        $query = $request;
+        $lapanganbasket = Pesan::where('jenislap', 'Lapangan Basket', '%' . $query . '%')->get();
+        $lapanganfutsal = Pesan::where('jenislap', 'Lapangan Futsal', '%' . $query . '%')->get();
         return view('dashboard.index', [
             "title" => "Home",
             "active" => 'home',
-            "pesan" => $pesan,
+            "pesan_basket" => $lapanganbasket,
+            "pesan_futsal" => $lapanganfutsal,
         ]);
     }
 

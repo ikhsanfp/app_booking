@@ -21,7 +21,7 @@
             </tr>
           </thead>
           <tbody class="">
-            @foreach ($pesan as $post)
+            @foreach ($pesan_basket as $post)
             <tr>
                 <th class="font-semibold h-8 w-40 border border-gray-500">{{ $post->profile->namapemain }}</th>
                 <th class="font-semibold h-8 w-40 border border-gray-500">{{ Carbon\Carbon::parse($post->start)->format('H:i') }} - {{ Carbon\Carbon::parse($post->end)->format('H:i') }}</th>
@@ -47,10 +47,12 @@
             </tr>
           </thead>
           <tbody class="">
+            @foreach ($pesan_futsal as $posts)
             <tr>
-                <th class="font-semibold h-8 w-40 border border-gray-500"></th>
-                <th class="font-semibold h-8 w-40 border border-gray-500"></th>
-            </tr>
+                <th class="font-semibold h-8 w-40 border border-gray-500">{{ $posts->profile->namapemain }}</th>
+                <th class="font-semibold h-8 w-40 border border-gray-500">{{ Carbon\Carbon::parse($posts->start)->format('H:i') }} - {{ Carbon\Carbon::parse($posts->end)->format('H:i') }}</th>
+              </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
