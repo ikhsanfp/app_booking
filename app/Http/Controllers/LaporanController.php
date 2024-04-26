@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class LaporanController extends Controller
 {
-    public function laporanadmin()
+    public function laporanuser()
     {
-        return view('dashboard.admin.laporan', [
+        return view('dashboard.laporan', [
             "title" => "Laporan",
             "active" => 'laporan'
         ]);
