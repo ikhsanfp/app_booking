@@ -1,16 +1,13 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
+    <form action="{{ route('cetak.pesan') }}">
     <div>
         <h3 class="font-bold ml-12 text-left mt-16 mb-5">Pilih Tanggal Reservasi Untuk Melihat Laporan</h3>
     </div>
-    <form class="ml-12 mt-2">
-        <!-- Label untuk tanggal -->
-        <label for="datepicker">Pilih Tanggal:</label>
-        <!-- Input jenis date -->
-        <input type="date" id="datepicker" name="datepicker">
-        <!-- Tombol untuk submit -->
-        <input type="submit" value="Tampilkan Laporan">
-    </form>
-
+    <div class="ml-12 mt-3 mb-4">
+        <input  class="p-2 border bg-gray-300 border-zinc-400 rounded-sm w-48" type="date" id="date" name="date" />
+        <a  href="{{ route('cetak.pesan') }}" target="_blank" class="font-bold text-white bg-blue-400 rounded px-5 py-2 ml-2 hover:bg-blue-800">Lihat Laporan</a>
+    </div>
+</form>
 @endsection
