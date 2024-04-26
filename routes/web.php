@@ -35,43 +35,18 @@ use App\Http\Controllers\RegisterController;
 Route::get('/', [HomeController::class, 'home']);
 Route::get('/home', [HomeController::class, 'index']);
 
-Route::get('/admin', function () {
-    return view('dashboard.admin.index', [
-        "title" => "Home",
-        "active" => 'home'
-    ]);
-});
 
-Route::get('/pesanmasuk', function () {
-    return view('dashboard.admin.pesanmasuk', [
-        "title" => "Pesan Masuk",
-        "active" => 'pesan'
-    ]);
-});
+Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/pesanmasuk', [AdminController::class, 'pesanmasuk'])->name('pesanmasuk');
+Route::get('/lapadmin', [AdminController::class, 'admlaporan']);
 
-Route::get('/lapadmin', function () {
-    return view('dashboard.admin.laporan', [
-        "title" => "Laporan",
-        "active" => 'laporan'
-    ]);
-});
 
-Route::get('/panduan', function () {
-    return view('dashboard.panduan', [
-        "title" => "Panduan",
-        "active" => 'panduan'
-    ]);
-});
+Route::get('/panduan', [PanduanController::class, 'panduan']);
 
 Route::get('/pesan', [PesanController::class, 'index']);
 Route::get('/tambahpesan', [PesanController::class, 'create']);
 
-Route::get('/laporan', function () {
-    return view('dashboard.laporan', [
-        "title" => "Laporan",
-        "active" => 'laporan'
-    ]);
-});
+Route::get('/laporan', [LaporanController::class, 'laporanuser']);
 
 Route::get('/login', function () {
     return view('login.index', [
@@ -85,11 +60,6 @@ Route::get('/register', function () {
     ]);
 });
 
-// Route::get('/pesan', [PesanController::class, 'index']);
-
-// Route::get('/tambahpesan', [TambahPesanController::class, 'tambahpesan']);
-
-// Route::post('/addpesan', [PesanController::class, 'store']);
 
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
 Route::post('/login/store', [LoginController::class, 'store']);
@@ -105,6 +75,8 @@ Route::get('/dashboard', function () {
 
 
 Route::get('/tambahpesan', [PesanController::class, 'create'])->name('pesan.create');
+Route::get('/cetakpesanan', [PesanController::class, 'cetak'])->name('cetak.pesan');
+
 
 // Route untuk menyimpan pesan lapangan baru
 Route::post('/addpesan', [PesanController::class, 'store'])->name('pesan.store');
@@ -112,3 +84,6 @@ Route::post('/addpesan', [PesanController::class, 'store'])->name('pesan.store')
 // Route untuk menampilkan daftar pesan lapangan
 Route::get('/pesan', [PesanController::class, 'index'])->name('dashboard.pesan');
 Route::get('/pesan', 'PesanController@index')->name('pesan.index');
+
+Route::get('/detail/{id}', [AdminController::class, 'show'])->name('pesanan.detail');
+Route::put('/edit/pesanan/{id}', [AdminController::class, 'update'])->name('pesanan.update');
