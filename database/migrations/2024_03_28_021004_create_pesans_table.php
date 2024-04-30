@@ -17,8 +17,8 @@ class CreatePesansTable extends Migration
             $table->id();
             $table->string('jenislap');
             $table->date('tglmain');
-            $table->time('start');
-            $table->time('end');
+            $table->string('start');
+            $table->string('end');
             $table->unsignedBigInteger('id_pemain');
             $table->timestamps();
         });

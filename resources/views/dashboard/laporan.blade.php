@@ -1,6 +1,7 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
+<form action="{{ route('cetak.pesan') }}">
     <div>
         <h3 class="font-bold ml-12 text-left mt-16 mb-5">Pilih Tanggal Reservasi Untuk Melihat Laporan</h3>
     </div>
@@ -12,5 +13,6 @@
         <!-- Tombol untuk submit -->
         <input type="submit" value="Tampilkan Laporan">
     </form>
+</form>
 
 @endsection

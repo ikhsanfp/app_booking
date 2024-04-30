@@ -21,10 +21,12 @@
             </tr>
           </thead>
           <tbody class="">
+            @foreach ( $pesan_basket as $post )
             <tr>
-                <th class="font-semibold h-8 w-40 border border-gray-500"></th>
-                <th class="font-semibold h-8 w-40 border border-gray-500"></th>
+                <th class="font-semibold h-8 w-40 border border-gray-500">{{ $post->profile->namapemain }}</th>
+                <th class="font-semibold h-8 w-40 border border-gray-500">{{ $post->start }} - {{ $post->end }}</th>
             </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
@@ -45,10 +47,12 @@
             </tr>
           </thead>
           <tbody class="">
+            @foreach ( $pesan_futsal as $post )
             <tr>
-                <th class="font-semibold h-8 w-40 border border-gray-500"></th>
-                <th class="font-semibold h-8 w-40 border border-gray-500"></th>
+                <th class="font-semibold h-8 w-40 border border-gray-500">{{ $post->profile->namapemain }}</th>
+                <th class="font-semibold h-8 w-40 border border-gray-500">{{ $post->start }} - {{ $post->end }}</th>
             </tr>
+            @endforeach
           </tbody>
         </table>
       </div>

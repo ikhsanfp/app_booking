@@ -550,6 +550,10 @@ video {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
+.mx-5 {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -590,6 +594,9 @@ video {
 }
 .ml-1 {
   margin-left: 0.25rem;
+}
+.ml-11 {
+  margin-left: 2.75rem;
 }
 .ml-12 {
   margin-left: 3rem;
@@ -797,6 +804,10 @@ video {
 .bg-red-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(239 68 68 / var(--tw-bg-opacity));
+}
+.bg-slate-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
 }
 .bg-white {
   --tw-bg-opacity: 1;

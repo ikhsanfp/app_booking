@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use App\Models\User;
 use App\Models\Pesan;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controllerl;
 
@@ -16,21 +21,17 @@ class PesanController extends Controller
      */
     public function index(Request $request)
     {
-        // Mendapatkan query pencarian dari inputan form
-        // $query = $request->input('q');
-
-        // Mencari pesan berdasarkan nama jika query pencarian diberikan
-
-        // $lapanganfutsal = Pesan::where('jenislap', 'Lapangan Futsal', '%' . $query . '%')->get();
-        // dd($pesan);
-
+        $query = $request;
+        $id = Auth::user()->id;
+        $id_user = Pesan::where('id', $id, '%' . $query . '%')->get();
+        // dd($id_user);
         $pesan = Pesan::all();
         return view('dashboard.pesan', [
             "title" => "Pesanan",
             "active" => 'pesan',
-            "pesan" => $pesan, // Melewatkan data pesan ke tampilan
-            // Melewatkan query pencarian ke tampilan
-            // "query" => $query 
+            "pesan" => $pesan,
+            "id_user" => $id_user
+
         ]);
     }
 
@@ -114,5 +115,34 @@ class PesanController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function view(Request $request)
+    {
+        // Ambil pesan berdasarkan ID
+        $query = $request;
+        $id = Auth::user()->id;
+        $id_pesan = Pesan::where('id', $id, '%' . $query . '%')->get();
+
+        return view('dashboard.cetakpesan', [
+            "title" => "Cetak Pesanan",
+            "id_pesan" => $id_pesan
+        ]);
+    }
+
+    public function view_pdf(Request $request)
+    {
+        $query = $request;
+        $id = Auth::user()->id;
+        $id_pesan = Pesan::where('id', $id, '%' . $query . '%')->get();
+        // Load HTML content
+        // $id_pesan = Pesan::where('id', $pesan->id)->orWhere('id', 'LIKE', '%' . $query . '%')->orderBy('id')->get();
+        $pdf  = PDF::loadview('dashboard.cetakpesan', [
+            "title" => "Cetak Pesanan",
+            "active" => "laporan",
+            "id_pesan" => $id_pesan,
+            // "id_pesan" => $id_pesan
+        ])->setpaper('a4', 'landscape');
+        return $pdf->stream('Laporan_Data_Pesanan.pdf');
     }
 }
