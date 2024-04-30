@@ -14,7 +14,6 @@ class LoginController extends Controller
             'title' => 'Login',
             'active' => 'login'
         ]);
-
     }
 
     public function store(Request $request)
@@ -24,7 +23,7 @@ class LoginController extends Controller
             'password' => $request->input('password')
         ]);
 
-        if(Auth::attempt($credentials)){
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/home');
         }
@@ -34,11 +33,8 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
-
         request()->session()->invalidate();
-
         request()->session()->regenerateToken();
-
         return redirect('/');
     }
 }

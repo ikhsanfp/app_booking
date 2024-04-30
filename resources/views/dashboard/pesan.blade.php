@@ -43,12 +43,12 @@
       </tr>
   </thead>
   <tbody class="">
-    @foreach ($pesan as $post)
+    @foreach ($id_user as $post)
       <tr>
           <th class="h-8 w-20 border border-gray-500">{{ $post->id }}</th>
           <th class="h-8 w-48 border border-gray-500">{{ $post->jenislap}}</th>
           <th class="h-8 w-48 border border-gray-500">{{ $post->tglmain}}</th>
-          <th class="h-8 w-48 border border-gray-500">{{ Carbon\Carbon::parse($post->start)->format('H:i') }} - {{ Carbon\Carbon::parse($post->end)->format('H:i') }}</th>
+          <th class="h-8 w-48 border border-gray-500">{{ $post->start }} - {{ $post->end }}</th>
           <th class="h-8 w-20 border border-gray-500">{{ $post->profile->namapemain }}</th>
           
         </tr>
