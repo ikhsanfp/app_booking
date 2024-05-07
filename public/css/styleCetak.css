@@ -1,53 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cetak Laporan</title>
-    <link rel="stylesheet" href="{{ public_path('css/style.css') }}">
-</head>
-<header>
-    <div>
-        <h1> 
-            <div class="date">Tanggal:{{ \Carbon\Carbon::now()->format('d/m/Y') }}</div>
-            <img src="../../../public/img/logostp.png" alt="Logo" class="logo">
-            SPORT CENTER AREA - SOLO TECNOPARK 
-        </h1>
-        <p> Jl. Ki Hajar Dewantara No.19, Jebres, Kec. Jebres Kota Surakarta, Jawa Tengah 57126</p>
-        <hr>
-    </div>
-</header>
-<body>
-    <div>
-        <h3>BUKTI RESERVASI LAPANGAN</h3>
-
-
-        <div value="{{ $id_pemain }}">ID : {{ $id_pemain }}</div>
-        <div value="{{ $pemain }}">Nama Pemain : {{ $pemain }}</div>
-        <div value="{{ $nohp }}">No.HP : {{ $nohp }}</div>
-
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Jenis Lapangan</th>
-                    <th>Waktu Main</th>
-                </tr>
-            </thead>
-            <tbody class="">
-                @foreach($lapangan as $index => $post)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $post->jenislap }}</td>
-                        <td>{{ $post->start }}.00 - {{ $post->end }}.00 & Tgl. {{ $post->tglmain }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</body>
-{{-- <style>
-    * {
+* {
     margin: 20px; /* Atur margin secara seragam sebesar 20px pada semua sisi */
     box-sizing: border-box;
     flex-wrap: wrap;
@@ -111,6 +62,3 @@ td {
     padding: 8px;
     text-align: center; /* Mengatur teks di sel-sel tabel menjadi tengah */
 }
-
-</style> --}}
-</html>

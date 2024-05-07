@@ -1,30 +1,6 @@
 @extends('dashboard.layouts.main')
 @section('container')
-{{-- <form action="{{ route('pesan.index') }}" method="GET">
-  <div class="form-group">
-      <input type="text" name="q" class="form-control" placeholder="Cari berdasarkan nama" value="{{ $query }}">
-  </div>
-  <button type="submit" class="btn btn-primary">Cari</button>
-</form>
 
-<table>
-  <thead>
-      <tr>
-          <th>Nama</th>
-          <th>Email</th>
-          <!-- Tambahkan kolom-kolom lain sesuai kebutuhan -->
-      </tr>
-  </thead>
-  <tbody>
-      @foreach($pesan as $pesan_item)
-      <tr>
-          <td>{{ $pesan_item->nama }}</td>
-          <td>{{ $pesan_item->email }}</td>
-          <!-- Tambahkan kolom-kolom lain sesuai kebutuhan -->
-      </tr>
-      @endforeach
-  </tbody>
-</table> --}}
 <div>
     <h3 class="font-bold ml-12 text-left mt-16 mb-5">List Pesananmu</h3>
 </div>
@@ -36,6 +12,7 @@
   <thead class="bg-gray-400">
       <tr>
           <th class="font-semibold h-8 w-10 border border-gray-500">No.</th>
+          <th class="font-semibold h-8 w-48 border border-gray-500">Kode Pesanan</th>
           <th class="font-semibold h-8 w-48 border border-gray-500">Jenis Lapangan</th>
           <th class="font-semibold h-8 w-48 border border-gray-500">Tanggal Main</th>
           <th class="font-semibold h-8 w-48 border border-gray-500">Durasi (Jam)</th>
@@ -43,16 +20,35 @@
       </tr>
   </thead>
   <tbody class="">
+    @php
+        $counter = 1;
+        $kodePesananCount = 1;
+    @endphp
     @foreach ($id_user as $post)
+      @php
+          $tanggalMain = \Carbon\Carbon::parse($post->tglmain);
+          $sekarang = \Carbon\Carbon::now();
+          $kodePesanan = '';
+
+          // Set kode pesanan berdasarkan jenis lapangan
+          if($post->jenislap == 'Lapangan Basket') {
+              $kodePesanan = 'B' . sprintf("%03d", $kodePesananCount);
+          } elseif($post->jenislap == 'Lapangan Futsal') {
+              $kodePesanan = 'F' . sprintf("%03d", $kodePesananCount);
+          }
+          $kodePesananCount++;
+      @endphp
+      @if($tanggalMain->isSameDay($sekarang) || $tanggalMain->isAfter($sekarang))
       <tr>
-          <th class="h-8 w-20 border border-gray-500">{{ $post->id }}</th>
+          <th class="h-8 w-20 border border-gray-500">{{ $counter++ }}</th>
+          <th class="h-8 w-48 border border-gray-500">{{ $kodePesanan }}</th>
           <th class="h-8 w-48 border border-gray-500">{{ $post->jenislap}}</th>
           <th class="h-8 w-48 border border-gray-500">{{ $post->tglmain}}</th>
           <th class="h-8 w-48 border border-gray-500">{{ $post->start }} - {{ $post->end }}</th>
           <th class="h-8 w-20 border border-gray-500">{{ $post->profile->namapemain }}</th>
-          
-        </tr>
-      @endforeach
+      </tr>
+      @endif
+    @endforeach
   </tbody>
 </table>
 @endsection

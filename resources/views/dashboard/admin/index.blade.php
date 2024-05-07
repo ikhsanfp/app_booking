@@ -24,7 +24,7 @@
             @foreach ( $pesan_basket as $post )
             <tr>
                 <th class="font-semibold h-8 w-40 border border-gray-500">{{ $post->profile->namapemain }}</th>
-                <th class="font-semibold h-8 w-40 border border-gray-500">{{ $post->start }} - {{ $post->end }}</th>
+                <th class="font-semibold h-8 w-40 border border-gray-500">{{ $post->start }} - {{ $post->end }}s</th>
             </tr>
             @endforeach
           </tbody>

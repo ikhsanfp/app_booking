@@ -1,12 +1,22 @@
 @extends('dashboard.admin.layouts.main')
-
 @section('container')
     <div>
         <h3 class="font-bold ml-12 text-left mt-16 mb-5">Pilih Tanggal Reservasi Untuk Melihat Laporan</h3>
     </div>
-    <div class="ml-12 mt-3 mb-4">
-        <input  class="p-2 border bg-gray-400 border-zinc-400 rounded-sm w-48" type="date" id="date" name="date" />
-    </div>
-    <a  href="{{ route('cetak.pesan') }}" target="_blank">Lihat Laporan</a>
+    <form class="ml-12 mt-2" action="{{ route('cetak.pesan') }}" method="GET">
+        <!-- Tampilkan pesan error jika ada -->
+        @if ($errors->has('tanggal'))
+            <div class="alert alert-danger">
+                {{ $errors->first('tanggal') }}
+            </div>
+        @endif
+
+        <!-- Label untuk tanggal -->
+        <label for="datepicker">Pilih Tanggal :</label>
+        <!-- Input jenis date -->
+        <input type="date" id="datepicker" name="tanggal" class="bg-gray-200" required>
+        <!-- Tombol untuk submit -->
+        <input type="submit" value="Lihat Laporan" class="">
+    </form>
     
 @endsection
