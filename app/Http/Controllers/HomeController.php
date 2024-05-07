@@ -8,6 +8,14 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
+    public function coba()
+    {
+        return view('navbar', [
+            "title" => "Navbar",
+            "action" => 'home',
+        ]);
+    }
+
     public function index(Request $request)
     {
         $query = $request;

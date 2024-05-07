@@ -9,17 +9,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PanduanController;
 use App\Http\Controllers\RegisterController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
+Route::get('/coba', [HomeController::class, 'coba']);
 Route::get('/', [HomeController::class, 'home']);
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/panduan', [PanduanController::class, 'index']);
@@ -30,7 +20,6 @@ Route::get('/lapadmin', [AdminController::class, 'admlaporan']);
 
 Route::get('/pesan', [PesanController::class, 'index']);
 Route::get('/tambahpesan', [PesanController::class, 'create']);
-
 
 Route::get('laporan', [LaporanController::class, 'index']);
 
@@ -43,10 +32,7 @@ Route::post('/register/store', [RegisterController::class, 'create']);
 
 Route::get('/dashboard', [HomeController::class, 'index'])->middleware('auth');
 
-
-
 Route::get('/tambahpesan', [PesanController::class, 'create'])->name('pesan.create');
-
 
 // Route untuk menyimpan pesan lapangan baru
 Route::post('/addpesan', [PesanController::class, 'store'])->name('pesan.store');
@@ -58,5 +44,6 @@ Route::get('/pesan', 'PesanController@index')->name('pesan.index');
 Route::get('/detail/{id}', [AdminController::class, 'show'])->name('pesanan.detail');
 Route::put('/edit/pesanan/{id}', [AdminController::class, 'update'])->name('pesanan.update');
 
-// Route::get('/cetakpesanan', [PesanController::class, 'cetak'])->name('cetak.pesan');
-Route::get('/cetakpesanan', [PesanController::class, 'view_pdf'])->name('cetak.pesan');
+Route::get('/cetakpesanan', [PesanController::class, 'view'])->name('cetak.pesan');
+// Route::get('/cetakpesanan', [PesanController::class, 'view_pdf'])->name('cetak.pesan');
+Route::get('/data', [PesanController::class, 'showData'])->name('data.index');

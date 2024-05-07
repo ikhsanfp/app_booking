@@ -14,14 +14,4 @@ class LaporanController extends Controller
             "active" => 'laporan'
         ]);
     }
-
-    public function laporanadmin()
-    {
-        $laporan = Pesan::all();
-        return view('dashboard.admin.laporan', [
-            "title" => "Laporan",
-            "active" => 'laporan',
-            "laporan" => $laporan
-        ]);
-    }
 }

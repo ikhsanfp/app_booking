@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <title>Solo Technopark | {{ $title }}</title>
     <link rel="stylesheet" href="/css/main.css">
     <style>
@@ -51,8 +52,23 @@
         
         
       }
+/* Menghilangkan panah yang muncul pada input waktu */
+input[type="time"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+/* Menyembunyikan bagian menit */
+input[type="time"] {
+  width: 50px; /* Atur lebar agar hanya bagian jam yang terlihat */
+}
+
+/* Menonaktifkan interaksi pengguna pada input */
+input[type="time"] {
+  pointer-events: none; /* Menonaktifkan interaksi pengguna */
+}
     </style>
   </head>
+
   <body>
     @include('dashboard.layouts.navbar')
 
@@ -61,5 +77,6 @@
     </div>
         
     @include('dashboard.layouts.footer')
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   </body>
 </html>
