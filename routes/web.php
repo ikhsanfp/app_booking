@@ -9,27 +9,40 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PanduanController;
 use App\Http\Controllers\RegisterController;
 
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login/store', [LoginController::class, 'store']);
+    Route::get('/register', [RegisterController::class, 'index']);
+    Route::post('/register/store', [RegisterController::class, 'create']);
+});
+
+Route::middleware(['auth', 'checkrole:1,0'])->group(function () {
+    Route::post('/logout', [LoginController::class, 'logout']);
+    Route::get('/redirect', [HomeController::class, 'cek']);
+});
+
+Route::middleware(['auth', 'checkrole:1'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index']);
+    Route::get('/pesanmasuk', [AdminController::class, 'pesanmasuk'])->name('pesanmasuk');
+    Route::get('/lapadmin', [AdminController::class, 'admlaporan']);
+});
+
+Route::middleware(['auth', 'checkrole:0'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index']);
+});
+
 Route::get('/coba', [HomeController::class, 'coba']);
 Route::get('/', [HomeController::class, 'home']);
-Route::get('/home', [HomeController::class, 'index']);
+// Route::get('/home', [HomeController::class, 'index']);
 Route::get('/panduan', [PanduanController::class, 'index']);
 
-Route::get('/admin', [AdminController::class, 'index']);
-Route::get('/pesanmasuk', [AdminController::class, 'pesanmasuk'])->name('pesanmasuk');
-Route::get('/lapadmin', [AdminController::class, 'admlaporan']);
+// Route::get('/admin', [AdminController::class, 'index']);
+
 
 Route::get('/pesan', [PesanController::class, 'index']);
 Route::get('/tambahpesan', [PesanController::class, 'create']);
 
 Route::get('laporan', [LaporanController::class, 'index']);
-
-Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
-Route::post('/login/store', [LoginController::class, 'store']);
-Route::post('/logout', [LoginController::class, 'logout']);
-
-Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
-Route::post('/register/store', [RegisterController::class, 'create']);
-
 Route::get('/dashboard', [HomeController::class, 'index'])->middleware('auth');
 
 Route::get('/tambahpesan', [PesanController::class, 'create'])->name('pesan.create');
@@ -44,6 +57,11 @@ Route::get('/pesan', 'PesanController@index')->name('pesan.index');
 Route::get('/detail/{id}', [AdminController::class, 'show'])->name('pesanan.detail');
 Route::put('/edit/pesanan/{id}', [AdminController::class, 'update'])->name('pesanan.update');
 
-Route::get('/cetakpesanan', [PesanController::class, 'view'])->name('cetak.pesan');
+Route::get('/cetakpesanan', [LaporanController::class, 'filterData'])->name('cetak.pesan');
 // Route::get('/cetakpesanan', [PesanController::class, 'view_pdf'])->name('cetak.pesan');
 Route::get('/data', [PesanController::class, 'showData'])->name('data.index');
+
+Route::delete('/pesan/{id}', 'AdminController@destroy')->name('pesan.destroy');
+Route::get('/createuser', [AdminController::class, 'createUser'])->name('create.user');
+
+Route::put('/createuser/{id}', [AdminController::class, 'rename'])->name('rename.user');

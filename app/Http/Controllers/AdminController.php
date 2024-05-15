@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Pesan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,7 +20,7 @@ class AdminController extends Controller
         $lapanganfutsal = Pesan::where('jenislap', 'Lapangan Futsal', '%' . $query . '%')->get();
         return view('dashboard.admin.index', [
             "title" => "Home",
-            "active" => 'home',
+            "active" => 'admin',
             "pesan_basket" => $lapanganbasket,
             "pesan_futsal" => $lapanganfutsal,
         ]);
@@ -27,10 +28,10 @@ class AdminController extends Controller
 
     public function pesanmasuk()
     {
-        $pesan = Pesan::all();
+        $pesan = Pesan::paginate(6);
         return view('dashboard.admin.pesanmasuk', [
-            "title" => 'Home',
-            "active" => 'home',
+            "title" => 'Pesan Masuk',
+            "active" => 'pesanmasuk',
             "pesan" => $pesan
 
         ]);
@@ -48,7 +49,7 @@ class AdminController extends Controller
     {
         return view('dashboard.admin.laporan', [
             "title" => "Laporan",
-            "active" => 'laporan'
+            "active" => 'lapadmin'
         ]);
     }
 
@@ -104,5 +105,44 @@ class AdminController extends Controller
         // dd($post);
         // Redirect to index
         return redirect()->route('pesanmasuk')->with(['success' => 'Data Berhasil Diubah!']);
+    }
+    public function destroy($id)
+    {
+        $pesan = Pesan::findOrFail($id); // Mengambil data item berdasarkan ID
+        $pesan->delete(); // Menghapus item
+        return redirect()->route('pesanmasuk')->with('success', 'Pesanan berhasil dihapus!!!');
+    }
+
+    public function createUser()
+    {
+
+        $user = User::paginate(6);
+        $pesan = Pesan::paginate(6);
+        return view('dashboard.admin.createUser', [
+            "title" => 'Pesan Masuk',
+            "active" => 'createuser',
+            "pesan" => $pesan,
+            "user" => $user
+
+        ]);
+    }
+    public function rename(Request $request, $id): RedirectResponse
+    {
+        // Validate form
+        $this->validate($request, [
+            'is_admin' => 'required',
+        ]);
+
+        // Get post by ID
+        $post = User::findOrFail($id);
+        // dd($request->all());
+        // Update post with new data
+        $post->update([
+            'is_admin' => $request->is_admin,
+            // Include id_pemain in the update
+        ]);
+        // dd($post);
+        // Redirect to index
+        return redirect()->route('create.user')->with(['success' => 'Data Berhasil Diubah!']);
     }
 }

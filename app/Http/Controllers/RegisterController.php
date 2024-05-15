@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
-     public function index()
+    public function index()
     {
         return view('register.index', [
             'title' => 'Register'
@@ -29,14 +29,14 @@ class RegisterController extends Controller
 
     protected function create(Request $request)
     {
-    $data = $request->all();
-    $user =  User::create([
-        'namapemain' => $data['namapemain'],
-        'email' => $data['email'],
-        'nohp' => $data['nohp'],
-        'password' => Hash::make($data['password']),
-    ]);
+        $data = $request->all();
+        $user =  User::create([
+            'namapemain' => $data['namapemain'],
+            'email' => $data['email'],
+            'nohp' => $data['nohp'],
+            'password' => Hash::make($data['password']),
+        ]);
 
-    return redirect('/login')->with('success', 'Registration successfull! Please login!');
+        return redirect('/login')->with('success', 'Registration successfull! Please login!');
     }
 }

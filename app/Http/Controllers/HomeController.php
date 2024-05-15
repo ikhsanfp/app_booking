@@ -8,6 +8,14 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
+    public function cek()
+    {
+        if (auth()->user()->is_admin === 1) {
+            return redirect('/admin');
+        } else {
+            return redirect('/home');
+        }
+    }
     public function coba()
     {
         return view('navbar', [
@@ -21,7 +29,6 @@ class HomeController extends Controller
         $query = $request;
         $lapanganbasket = Pesan::where('jenislap', 'Lapangan Basket', '%' . $query . '%')->get();
         $lapanganfutsal = Pesan::where('jenislap', 'Lapangan Futsal', '%' . $query . '%')->get();
-
         return view('dashboard.index', [
             "title" => "Home",
             "active" => 'home',
@@ -44,5 +51,9 @@ class HomeController extends Controller
             "title" => "Home",
             "active" => 'home'
         ]);
+    }
+    public function ikhsan()
+    {
+        return view('ikhsan');
     }
 }

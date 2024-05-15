@@ -24,31 +24,41 @@
         $counter = 1;
         $kodePesananCount = 1;
     @endphp
-    @foreach ($id_user as $post)
-      @php
+    @foreach ($id_user as $key => $post)
+      @php  
           $tanggalMain = \Carbon\Carbon::parse($post->tglmain);
           $sekarang = \Carbon\Carbon::now();
           $kodePesanan = '';
-
+          $id_pesan = $post->id;
           // Set kode pesanan berdasarkan jenis lapangan
           if($post->jenislap == 'Lapangan Basket') {
-              $kodePesanan = 'B' . sprintf("%03d", $kodePesananCount);
+              $kodePesanan = 'B' . sprintf("%03d", $id_pesan);
           } elseif($post->jenislap == 'Lapangan Futsal') {
-              $kodePesanan = 'F' . sprintf("%03d", $kodePesananCount);
+              $kodePesanan = 'F' . sprintf("%03d", $id_pesan);
           }
           $kodePesananCount++;
+          $jenisLapangan = '';
+
+          if($post->jenislap == 'Lapangan Basket'){
+            $jenisLapangan ='Basket';
+          } else if($post->jenislap == 'Lapangan Futsal'){
+            $jenisLapangan ='Futsal';
+          }
       @endphp
       @if($tanggalMain->isSameDay($sekarang) || $tanggalMain->isAfter($sekarang))
       <tr>
-          <th class="h-8 w-20 border border-gray-500">{{ $counter++ }}</th>
+          <th class="h-8 w-20 border border-gray-500">{{ $id_user->firstItem() + $key }}</th>
           <th class="h-8 w-48 border border-gray-500">{{ $kodePesanan }}</th>
-          <th class="h-8 w-48 border border-gray-500">{{ $post->jenislap}}</th>
+          <th class="h-8 w-48 border border-gray-500">{{ $jenisLapangan}}</th>
           <th class="h-8 w-48 border border-gray-500">{{ $post->tglmain}}</th>
-          <th class="h-8 w-48 border border-gray-500">{{ $post->start }} - {{ $post->end }}</th>
+          <th class="h-8 w-48 border border-gray-500">{{ $post->start }}.00 - {{ $post->end }}.00</th>
           <th class="h-8 w-20 border border-gray-500">{{ $post->profile->namapemain }}</th>
       </tr>
       @endif
     @endforeach
   </tbody>
 </table>
+    <div class="mt-5 ml-12 mr-64">
+        {{ $id_user->links('pagination::tailwind') }}
+    </div>  
 @endsection

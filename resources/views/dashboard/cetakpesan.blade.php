@@ -39,14 +39,14 @@
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $post->jenislap }}</td>
-                        <td>{{ $post->start }}.00 - {{ $post->end }}.00 & Tgl. {{ $post->tglmain }}</td>
+                        <td>Tgl. {{ $post->tglmain }} Pukul {{ $post->start }}.00 - {{ $post->end }}.00</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 </body>
-{{-- <style>
+<style>
     * {
     margin: 20px; /* Atur margin secara seragam sebesar 20px pada semua sisi */
     box-sizing: border-box;
@@ -112,5 +112,5 @@ td {
     text-align: center; /* Mengatur teks di sel-sel tabel menjadi tengah */
 }
 
-</style> --}}
+</style>
 </html>
