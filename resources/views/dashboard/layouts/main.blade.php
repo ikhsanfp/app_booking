@@ -49,8 +49,30 @@
         border:1px solid #ccc;
         border-radius:5px;
         width: 200px;
-        
-        
+      }
+      .wrapper{
+        border: 0px solid #ddd;
+        width: 300px;
+        height: 229px;
+        padding: 0 0 0 0;
+        overflow-y: auto;
+      }
+
+      .wrapper::-webkit-scrollbar{
+        width: 3px;
+        background-color: #ddd;
+      }
+
+      .wrapper::-webkit-scrollbar-thumb{
+        background-color: #6e6d6d;
+      }
+
+      thead th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      --tw-bg-opacity:1;
+      background-color: rgb(156 163 175 / var(--tw-bg-opacity));
       }
 /* Menghilangkan panah yang muncul pada input waktu */
 input[type="time"]::-webkit-calendar-picker-indicator {

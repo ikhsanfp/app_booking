@@ -60,32 +60,58 @@
     var jamSaatIni = waktuSaatIni.getHours();
     var existingOrders = {!! json_encode($existingOrders) !!}; // Memuat data pesanan yang sudah ada
 
+    // Validasi apakah semua input telah diisi
     if (jenislap === "" || tglmain === "" || start === "" || end === "") {
       alert("Mohon lengkapi semua input sebelum mengirimkan pesanan.");
       return false;
     }
-    if (start <= jamSaatIni || end <= jamSaatIni) {
+
+    // Validasi untuk memastikan bahwa waktu mulai dan selesai tidak melewati waktu saat ini
+    if (tglmain == "{{ date('Y-m-d') }}" && (start <= jamSaatIni || end <= jamSaatIni)) {
       alert("Tidak bisa memesan pada jam ini.");
       return false;
     }
 
-
+    // Validasi untuk memastikan waktu mulai lebih awal dari waktu selesai
     if (end <= start) {
       alert("Waktu main yang anda masukkan salah.");
       return false;
     }
 
-    var today = new Date().toISOString().split('T')[0];
-
-    if (tglmain < today) {
+    // Validasi untuk memastikan tanggal main setelah hari ini
+    if (tglmain < "{{ date('Y-m-d') }}") {
       alert("Tanggal main harus setelah hari ini.");
       return false;
     }
 
-    if (start < "09:00" || end > "21:00") {
-      alert("Jam main harus di antara 09:00 dan 21:00.");
-      return false;
-    }
+    // Validasi untuk memastikan jam main di antara 09:00 dan 21:00
+
+    // if (jenislap === "" || tglmain === "" || start === "" || end === "") {
+    //   alert("Mohon lengkapi semua input sebelum mengirimkan pesanan.");
+    //   return false;
+    // }
+    // if (start <= jamSaatIni || end <= jamSaatIni) {
+    //   alert("Tidak bisa memesan pada jam ini.");
+    //   return false;
+    // }
+
+
+    // if (end <= start) {
+    //   alert("Waktu main yang anda masukkan salah.");
+    //   return false;
+    // }
+
+    // var today = new Date().toISOString().split('T')[0];
+
+    // if (tglmain < today) {
+    //   alert("Tanggal main harus setelah hari ini.");
+    //   return false;
+    // }
+
+    // if (start < "09:00" || end > "21:00") {
+    //   alert("Jam main harus di antara 09:00 dan 21:00.");
+    //   return false;
+    // }
 
     for (var i = 0; i < existingOrders.length; i++) {
       var order = existingOrders[i];

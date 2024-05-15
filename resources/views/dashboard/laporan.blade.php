@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @extends('dashboard.layouts.main')
 @section('container')
 
@@ -11,8 +10,8 @@
             <div class="alert alert-danger">
                 {{ $errors->first('tanggal') }}
             </div>
+        
         @endif
-
         <!-- Label untuk tanggal -->
         <label for="datepicker">Pilih Tanggal :</label>
         <!-- Input jenis date -->
@@ -22,22 +21,3 @@
     </form>
 
 @endsection
-=======
-<?php
-
-namespace App\Http\Controllers;
-
-use App\Models\Pesan;
-use Illuminate\Http\Request;
-
-class LaporanController extends Controller
-{
-    public function index()
-    {
-        return view('dashboard.laporan', [
-            "title" => "Laporan",
-            "active" => 'laporan'
-        ]);
-    }
-}
->>>>>>> origin/ikhsan

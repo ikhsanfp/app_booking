@@ -14,7 +14,7 @@ use App\Http\Controllers\Controllerl;
 
 class PesanController extends Controller
 {
-    /**
+    /** 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -23,7 +23,7 @@ class PesanController extends Controller
     {
         $query = $request;
         $id_pemain = Auth::user()->id;
-        $id_user = Pesan::where('id_pemain', $id_pemain, '%' . $query . '%')->get();
+        $id_user = Pesan::where('id_pemain', $id_pemain, '%' . $query . '%')->paginate(6);
         // $pesan = Pesan::all();
         // dd($id_user);
         return view('dashboard.pesanan', [
@@ -91,50 +91,6 @@ class PesanController extends Controller
         //     ->with('success', 'Pesan lapangan berhasil dibuat.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
     public function view(Request $request)
     {
         // Ambil tanggal dari input form (jika tersedia)
@@ -164,7 +120,7 @@ class PesanController extends Controller
             "id_pemain" => $id_pemain,
             "pemain" => $pemain,
             "nohp" => $nohp,
-        ])->setpaper('a4', 'landscape');;
+        ])->setpaper('a4', 'landscape');
         return $pdf->stream('Laporan_Data_Pesanan.pdf');
     }
 
