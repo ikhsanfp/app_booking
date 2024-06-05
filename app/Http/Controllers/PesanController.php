@@ -125,26 +125,6 @@ class PesanController extends Controller
     }
 
 
-    // public function view(Request $request)
-    // {
-
-    //     // Ambil pesan berdasarkan ID
-    //     $query = $request;
-    //     $post = Auth::user();
-    //     $id_pemain = Auth::user()->id;
-    //     $id_pesan = Pesan::where('id_pemain', $id_pemain, '%' . $query . '%')->get();
-    //     $pemain = $post->namapemain;
-    //     $nohp = $post->nohp;
-
-    //     return view('dashboard.cetakpesan', [
-    //         "title" => "Cetak Pesanan",
-    //         "id_pesan" => $id_pesan,
-    //         "id_pemain" => $id_pemain,
-    //         "pemain" => $pemain,
-    //         "nohp" => $nohp,
-    //     ]);
-    // }
-
     public function view_pdf(Request $request)
     {
         $query = $request;
@@ -157,6 +137,7 @@ class PesanController extends Controller
 
         // Ambil data berdasarkan tanggal yang dipilih
         $data = Pesan::whereDate('tglmain', $tanggal)->get();
+        $image = Image::all();
 
         $pdf  = PDF::loadview('dashboard.cekcetakpesan', [
             "title" => "Cetak Pesanan",
@@ -166,6 +147,7 @@ class PesanController extends Controller
             "pemain" => $pemain,
             "nohp" => $nohp,
             "data" => $data,
+            "image" => $image
             // "id_pesan" => $id_pesan
         ])->setpaper('a4', 'landscape');
         return $pdf->stream('Laporan_Data_Pesanan.pdf');

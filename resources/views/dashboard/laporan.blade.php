@@ -2,22 +2,21 @@
 @section('container')
 
     <div>
-        <h3 class="font-bold ml-12 text-left mt-16 mb-5">Pilih Tanggal Reservasi Untuk Melihat Laporan</h3>
+        <h3 class="font-bold ml-4 sm:ml-12 text-left mt-8 sm:mt-16 mb-5">Pilih Tanggal Reservasi Untuk Melihat Laporan</h3>
     </div>
-    <form class="ml-12 mt-2" action="{{ route('cetak.pesan') }}" method="GET">
+    <form class="ml-4 sm:ml-12 mt-2 flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4" action="{{ route('cetak.pesanan') }}" method="GET">
         <!-- Tampilkan pesan error jika ada -->
         @if ($errors->has('tanggal'))
-            <div class="alert alert-danger">
+            <div class="alert alert-danger text-red-500">
                 {{ $errors->first('tanggal') }}
             </div>
-        
         @endif
-        <!-- Label untuk tanggal -->
-        <label for="datepicker">Pilih Tanggal :</label>
+        
         <!-- Input jenis date -->
-        <input type="date" id="datepicker" name="tanggal" class="bg-gray-200" required>
+        <input type="date" id="datepicker" name="tanggal" class="bg-gray-200 border-zinc-400 p-2 rounded" required>
         <!-- Tombol untuk submit -->
-        <input type="submit" value="Lihat Laporan" class="">
+        <input type="submit" value="Lihat Laporan" class="bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-800 cursor-pointer">
     </form>
+    
 
 @endsection

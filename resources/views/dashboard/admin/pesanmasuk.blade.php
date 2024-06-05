@@ -1,84 +1,109 @@
 @extends('dashboard.admin.layouts.main')
 
 @section('container')
-<div>
+<div class="ml-12">
   @if(session()->has('success'))
-    <div class="p-3 rounded bg-green-500 text-green-100 mb-4">
-      {{ session('success') }}
-    </div>
-    @endif
-    <h3 class="font-bold ml-12 text-left mt-16 mb-5">List Pengajuan Reservasi</h3>
+  <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert" id="alert">
+    <strong class="font-bold">Success!</strong>
+    <span class="block sm:inline">{{ session('success') }}</span>
+    <span class="absolute top-0 bottom-0 right-0 px-4 py-3" id="close-alert">
+      <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <title>Close</title>
+        <path fill-rule="evenodd" d="M14.348 5.652a.5.5 0 00-.707 0L10 9.293 6.36 5.652a.5.5 0 00-.708.708L9.293 10l-3.64 3.64a.5.5 0 10.708.708L10 10.707l3.64 3.64a.5.5 0 00.708-.708L10.707 10l3.64-3.64a.5.5 0 000-.708z" clip-rule="evenodd"/>
+      </svg>
+    </span>
+  </div>
+@endif
+
+  <h3 class="font-bold ml-12 text-left mt-16 mb-5">List Pengajuan Reservasi</h3>
 </div>
-<table class="mt-6 ml-12">
-  <thead class="bg-gray-400">
+<div class="overflow-x-auto ml-12 mr-12">
+  <table class="mt-6 w-full min-w-[800px] font-bold">
+    <thead class="bg-gray-400">
       <tr>
-          <th class="font-semibold h-8 w-10 border border-gray-500">No.</th>
-          <th class="font-semibold h-8 w-20 border border-gray-500">ID</th>
-          <th class="font-semibold h-8 w-48 border border-gray-500">Timestamp</th>
-          <th class="font-semibold h-8 w-48 border border-gray-500">Nama Pemain</th>
-          <th class="font-semibold h-8 w-48 border border-gray-500">Jenis Lapangan</th>
-          <th class="font-semibold h-8 w-48 border border-gray-500">Waktu Main</th>
-          <th class="font-semibold h-8 w-48 border border-gray-500">Opsi</th>
+        <th class="font-semibold h-10 w-10 border border-gray-500 text-center">No.</th>
+        <th class="font-semibold h-10 w-20 border border-gray-500 text-center">ID</th>
+        <th class="font-semibold h-10 w-48 border border-gray-500 text-center">Timestamp</th>
+        <th class="font-semibold h-10 w-48 border border-gray-500 text-center">Nama Pemain</th>
+        <th class="font-semibold h-10 w-48 border border-gray-500 text-center">Jenis Lapangan</th>
+        <th class="font-semibold h-10 w-48 border border-gray-500 text-center">Waktu Main</th>
+        <th class="font-semibold h-10 w-48 border border-gray-500 text-center">Opsi</th>
       </tr>
-  </thead>
-  <tbody>
-    @php
+    </thead>
+    <tbody>
+      @php
         $counter = 1;
         $kodePesananCount = 1;
-    @endphp
-    @foreach ( $pesan as $key => $post)
-    @php  
-          $tanggalMain = \Carbon\Carbon::parse($post->tglmain);
-          $sekarang = \Carbon\Carbon::now();
-          $kodePesanan = '';
-          $id_pesan = $post->id;
-          // Set kode pesanan berdasarkan jenis lapangan
-          if($post->jenislap == 'Lapangan Basket') {
-              $kodePesanan = 'B' . sprintf("%03d", $id_pesan);
-          } elseif($post->jenislap == 'Lapangan Futsal') {
-              $kodePesanan = 'F' . sprintf("%03d", $id_pesan);
-          }
-          $kodePesananCount++;
-          $jenisLapangan = '';
-
-          if($post->jenislap == 'Lapangan Basket'){
-            $jenisLapangan ='Basket';
-          } else if($post->jenislap == 'Lapangan Futsal'){
-            $jenisLapangan ='Futsal';
-          }
       @endphp
-      {{-- @if($tanggalMain->isSameDay($sekarang) || $tanggalMain->isAfter($sekarang)) --}}
+      @if($pesan->count() > 0)
+      @foreach ($pesan as $key => $post)
+      @php  
+        $tanggalMain = \Carbon\Carbon::parse($post->tglmain);
+        $sekarang = \Carbon\Carbon::now();
+        $kodePesanan = '';
+        $id_pesan = $post->id;
+        if($post->jenislap == 'Lapangan Basket') {
+          $kodePesanan = 'B' . sprintf("%03d", $id_pesan);
+        } elseif($post->jenislap == 'Lapangan Futsal') {
+          $kodePesanan = 'F' . sprintf("%03d", $id_pesan);
+        }
+        $kodePesananCount++;
+        $jenisLapangan = ($post->jenislap == 'Lapangan Basket') ? 'Basket' : 'Futsal';
+
+        $startFormatted = number_format($post->start, 2);
+        $endFormatted = number_format($post->end, 2);
+      @endphp
       <tr>
-          <th class="h-8 w-10 border border-gray-500">{{ $pesan->firstItem() + $key }}</th>
-          <th class="h-8 w-20 border border-gray-500">{{ $kodePesanan }}</th>
-          <th class="h-8 w-48 border border-gray-500">{{ Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</th>
-          <th class="h-8 w-48 border border-gray-500">{{ $post->profile->namapemain }}</th>
-          <th class="h-8 w-48 border border-gray-500">{{ $jenisLapangan }}</th>
-          <th class="h-8 w-48 border border-gray-500">{{ $post->start }}.00 - {{ $post->end }}.00</th>
-          <th class="h-8 w-48 border border-gray-500 flex justify-center">
-            <a href="{{ route('pesanan.detail', $post->id) }}" class="mx-2">
-            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="15" height="15" rx="4" fill="#F9D48C"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2283 3.42741C10.9546 3.15374 10.5833 3 10.1962 3C9.80916 3 9.43792 3.15374 9.16417 3.42741L8.82014 3.77192L11.2288 6.18059L11.5723 5.83657C11.7079 5.70101 11.8155 5.54007 11.8889 5.36294C11.9622 5.18581 12 4.99597 12 4.80424C12 4.61252 11.9622 4.42267 11.8889 4.24555C11.8155 4.06842 11.7079 3.90748 11.5723 3.77192L11.2283 3.42741ZM10.5403 6.86864L8.1316 4.45997L3.70841 8.88365C3.61162 8.98046 3.544 9.10254 3.51328 9.23595L3.01257 11.4038C2.99391 11.4842 2.99605 11.5681 3.01879 11.6476C3.04152 11.727 3.08411 11.7993 3.14252 11.8577C3.20094 11.9161 3.27326 11.9587 3.35269 11.9815C3.43211 12.0042 3.51601 12.0063 3.59649 11.9877L5.76478 11.4874C5.89801 11.4566 6.01991 11.389 6.11659 11.2923L10.5403 6.86864Z" fill="white"/>
-                </svg>
+        <td class="h-10 w-10 border border-gray-500 text-center">{{ $pesan->firstItem() + $key }}</td>
+        <td class="h-10 w-20 border border-gray-500 text-center">{{ $kodePesanan }}</td>
+        <td class="h-10 w-48 border border-gray-500 text-center">{{ Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</td>
+        <td class="h-10 w-48 border border-gray-500 text-center">{{ $post->profile->namapemain }}</td>
+        <td class="h-10 w-48 border border-gray-500 text-center">{{ $jenisLapangan }}</td>
+        <td class="h-10 w-48 border border-gray-500 text-center">{{ $startFormatted }} - {{ $endFormatted }}</td>
+        <td class="h-10 w-48 border border-gray-500 text-center">
+          <div class="flex justify-center items-center space-x-2">
+            <a href="{{ route('pesanan.detail', $post->id) }}" class="inline-flex justify-center items-center">
+              <svg width="20" height="20" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="17" height="17" rx="4" fill="#F9D48C"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2283 4.42741C11.9546 4.15374 11.5833 4 11.1962 4C10.8092 4 10.4379 4.15374 10.1642 4.42741L9.82014 4.77192L12.2288 7.18059L12.5723 6.83657C12.7079 6.70101 12.8155 6.54007 12.8889 6.36294C12.9622 6.18581 13 5.99597 13 5.80424C13 5.61252 12.9622 5.42267 12.8889 5.24555C12.8155 5.06842 12.7079 4.90748 12.5723 4.77192L12.2283 4.42741ZM11.5403 7.86864L9.1316 5.45997L4.70841 9.88365C4.61162 9.98046 4.544 10.1025 4.51328 10.2359L4.01257 12.4038C3.99391 12.4842 3.99605 12.5681 4.01879 12.6476C4.04152 12.727 4.08411 12.7993 4.14252 12.8577C4.20094 12.9161 4.27326 12.9587 4.35269 12.9815C4.43211 13.0042 4.51601 13.0063 4.59649 12.9877L6.76478 12.4874C6.89801 12.4566 7.01991 12.389 7.11659 12.2923L11.5403 7.86864Z" fill="white"/>
+              </svg>
             </a>
-            <form action="{{ route('pesan.destroy', $post->id) }}" method="POST">
+            <form action="{{ route('pesan.destroy', $post->id) }}" method="POST" onclick="return myFunction();" class="inline-flex justify-center items-center">
               @csrf
               @method('DELETE')
-              <button type="submit" class="mt-2">
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="15" height="15" rx="5" fill="#FF7575"/>
-                    <path d="M4.2001 3.6C4.04097 3.6 3.88836 3.66321 3.77583 3.77574C3.66331 3.88826 3.6001 4.04087 3.6001 4.2V4.8C3.6001 4.95913 3.66331 5.11174 3.77583 5.22426C3.88836 5.33679 4.04097 5.4 4.2001 5.4H4.5001V10.8C4.5001 11.1183 4.62653 11.4235 4.85157 11.6485C5.07661 11.8736 5.38184 12 5.7001 12H9.3001C9.61836 12 9.92358 11.8736 10.1486 11.6485C10.3737 11.4235 10.5001 11.1183 10.5001 10.8V5.4H10.8001C10.9592 5.4 11.1118 5.33679 11.2244 5.22426C11.3369 5.11174 11.4001 4.95913 11.4001 4.8V4.2C11.4001 4.04087 11.3369 3.88826 11.2244 3.77574C11.1118 3.66321 10.9592 3.6 10.8001 3.6H8.7001C8.7001 3.44087 8.63688 3.28826 8.52436 3.17574C8.41184 3.06321 8.25923 3 8.1001 3H6.9001C6.74097 3 6.58836 3.06321 6.47583 3.17574C6.36331 3.28826 6.3001 3.44087 6.3001 3.6H4.2001ZM6.0001 6C6.07966 6 6.15597 6.03161 6.21223 6.08787C6.26849 6.14413 6.3001 6.22044 6.3001 6.3V10.5C6.3001 10.5796 6.26849 10.6559 6.21223 10.7121C6.15597 10.7684 6.07966 10.8 6.0001 10.8C5.92053 10.8 5.84423 10.7684 5.78797 10.7121C5.7317 10.6559 5.7001 10.5796 5.7001 10.5V6.3C5.7001 6.22044 5.7317 6.14413 5.78797 6.08787C5.84423 6.03161 5.92053 6 6.0001 6ZM7.5001 6C7.57966 6 7.65597 6.03161 7.71223 6.08787C7.76849 6.14413 7.8001 6.22044 7.8001 6.3V10.5C7.8001 10.5796 7.76849 10.6559 7.71223 10.7121C7.65597 10.7684 7.57966 10.8 7.5001 10.8C7.42053 10.8 7.34423 10.7684 7.28797 10.7121C7.2317 10.6559 7.2001 10.5796 7.2001 10.5V6.3C7.2001 6.22044 7.2317 6.14413 7.28797 6.08787C7.34423 6.03161 7.42053 6 7.5001 6ZM9.3001 6.3V10.5C9.3001 10.5796 9.26849 10.6559 9.21223 10.7121C9.15597 10.7684 9.07966 10.8 9.0001 10.8C8.92053 10.8 8.84423 10.7684 8.78797 10.7121C8.7317 10.6559 8.7001 10.5796 8.7001 10.5V6.3C8.7001 6.22044 8.7317 6.14413 8.78797 6.08787C8.84423 6.03161 8.92053 6 9.0001 6C9.07966 6 9.15597 6.03161 9.21223 6.08787C9.26849 6.14413 9.3001 6.22044 9.3001 6.3Z" fill="white"/>
-                </svg>  
+              <button type="submit" class="">
+                <svg width="20" height="20" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="17" height="17" rx="5" fill="#FF7575"/>
+                  <path d="M5.2001 4.6C5.04097 4.6 4.88836 4.66321 4.77583 4.77574C4.66331 4.88826 4.6001 5.04087 4.6001 5.2V5.8C4.6001 5.95913 4.66331 6.11174 4.77583 6.22426C4.88836 6.33679 5.04097 6.4 5.2001 6.4H5.8001V11.8C5.8001 11.9591 5.86331 12.1117 5.97583 12.2243C6.08836 12.3368 6.24097 12.4 6.4001 12.4H10.6001C10.7592 12.4 10.9118 12.3368 11.0243 12.2243C11.1369 12.1117 11.2001 11.9591 11.2001 11.8V6.4H11.8001C11.9592 6.4 12.1118 6.33679 12.2243 6.22426C12.3369 6.11174 12.4001 5.95913 12.4001 5.8V5.2C12.4001 5.04087 12.3369 4.88826 12.2243 4.77574C12.1118 4.66321 11.9592 4.6 11.8001 4.6H8.3001H5.2001ZM7.2001 7.2H6.4001V11.2H7.2001V7.2ZM9.6001 7.2H10.4001V11.2H9.6001V7.2Z" fill="white"/>
+                </svg>
               </button>
             </form>
-          </th>
+          </div>
+        </td>
       </tr>
-      {{-- @endif --}}
       @endforeach
-  </tbody>
-</table>
-<div class="mt-5 ml-12 mr-40">
-  {{ $pesan->links('pagination::tailwind') }}
+      @else
+      <tr>
+        <td colspan="6" class="font-semibold h-8 w-20 border border-gray-500 text-center">Tidak ada pesanan yang ditemukan.</td>
+      </tr>
+      @endif
+    </tbody>
+  </table>
+  <div class="mt-5 flex justify-end">
+    {{ $pesan->links() }}
   </div>
+</div>
+
+<script>
+  function myFunction() {
+    if(!confirm("Are you sure you want to delete this record?"))
+    event.preventDefault();
+  }
+  const closeAlert = document.getElementById('close-alert');
+  closeAlert.addEventListener('click', () => {
+    const alert = document.getElementById('alert');
+    alert.style.display = 'none';
+  });
+</script>
+
 @endsection

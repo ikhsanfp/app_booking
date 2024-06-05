@@ -18,11 +18,17 @@
             <label class="block text-md text-white">No. HP</label>
             <input name="nohp" type="text" id="nohp" class="w-full border border-gray-300 px-4 py-2 rounded-lg" placeholder="">
         </div>
+        
         <div class="mb-2">
-            <label class="block text-md text-white">Password</label>
-            <input name="password" type="password" id="password" class="w-full border border-gray-300 px-4 py-2 rounded-lg" placeholder="">
-            
-        </div>
+          <label class="block text-md text-white">Password</label>
+          <div class="relative group">
+            <input name="password" type="password" id="password" class="w-full border border-gray-300 px-4 py-2 rounded-lg" placeholder="" required>
+            <button type="button" class="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500" onclick="togglePasswordVisibility()">
+              <img id="eyeIcon" src="./img/eye.svg" alt="Show Password" class="h-5 w-5">
+            </button>
+          </div>
+      </div>
+
           <div class="mb-6">
             <p class="text-sm mt-2 text-white">Sudah memiliki akun? Silahkan login<a href="/login" class="underline underline-offset-2 text-blue-700"> disini</a></p>
         </div>
@@ -34,6 +40,19 @@
   </div>
 </div>
     
+<script>
+  function togglePasswordVisibility() {
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeIcon.src = './img/eye-slash.svg'; // Change to 'eye-slash' icon when showing password
+        } else {
+            passwordInput.type = 'password';
+            eyeIcon.src = './img/eye.svg'; // Change back to 'eye' icon when hiding password
+        }
+    }
+</script>
 
 
 @endsection

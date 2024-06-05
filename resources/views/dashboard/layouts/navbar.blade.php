@@ -29,7 +29,7 @@
           </ul>
         </div>
         <div class="relative hidden md:flex logout-menu transition-all duration-300 ease-in-out"> <!-- Hide by default, show on medium and above with smooth transition -->
-          <button id="dropdownMenuButton" class="flex items-center px-4 py-4 rounded-3xl hover:text-blue-400 focus:outline-none transition-all duration-300 ease-in-out">
+          <button id="dropdownMenuButton" class="flex items-center font-bold px-4 py-4 rounded-3xl hover:text-blue-400 focus:outline-none transition-all duration-300 ease-in-out">
             {{ $pemain }}
             <svg id="dropdownIcon" class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path id="downIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -74,7 +74,7 @@
           <li>
             <form action="/logout" method="post">
               @csrf
-              <button class="flex items-center px-4 py-4 rounded-3xl hover:text-blue-400 transition-all duration-300 ease-in-out">
+              <button class="flex items-center font-bold px-4 py-4 rounded-3xl hover:text-blue-400 transition-all duration-300 ease-in-out">
                 Logout <img src="./img/logout.png" alt="Logout" class="ml-2 h-5 w-auto" />
               </button>
             </form>
@@ -119,4 +119,4 @@
     }
 };
   </script>
-  
+ 

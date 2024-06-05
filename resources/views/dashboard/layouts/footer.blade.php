@@ -1,6 +1,11 @@
-<div class="p-3 fixed bottom-0 right-0 left-0 bg-blue-400 text-center">
-    <ul class="text-xs">
-      <li><a href="#">Copyright @ 2024 | All Right Reserved</a></li>
+<div class="fixed bottom-0 w-full bg-blue-400 text-center z-50">
+  <ul class="p-2 text-xs md:text-sm lg:text-base">
+      <li><a href="#" class="hover:underline">Copyright @ 2024 | All Rights Reserved</a></li>
       <li>Design & Developed by IT Solo Technopark</li>
-    </ul>
-  </div>
+  </ul>
+</div>
+
+<div class="pb-12">
+  <!-- Your content goes here -->
+  <!-- Ensure there's enough content to make the page scrollable -->
+</div>

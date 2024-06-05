@@ -21,18 +21,26 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if($pesan_basket->count() > 0)
                     @foreach ($pesan_basket as $post)
                         @php
                             $today = date('Y-m-d');
                             $tglmain = date('Y-m-d', strtotime($post->tglmain));
+                            $startFormatted = number_format($post->start, 2);
+                            $endFormatted = number_format($post->end, 2);
                         @endphp
                         @if ($tglmain >= $today)
                             <tr>
                                 <th class="font-semibold h-8 w-40 border border-gray-500">{{ $post->profile->namapemain }}</th>
-                                <th class="font-semibold h-8 w-40 border border-gray-500">{{ date('d/m', strtotime($post->tglmain)) }} {{ $post->start }} - {{ $post->end }}</th>
+                                <th class="font-semibold h-8 w-40 border border-gray-500">{{ date('d/m', strtotime($post->tglmain)) }} {{ $startFormatted }} - {{ $endFormatted }}</th>
                             </tr>
                         @endif
                     @endforeach
+                    @else
+                        <tr>
+                             <td colspan="6" class="font-semibold h-8 w-20 border border-gray-500 text-center">Tidak ada pesanan yang ditemukan.</td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
         </div>
@@ -53,34 +61,29 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if($pesan_futsal->count() > 0)
                     @foreach ($pesan_futsal as $post)
                         @php
                             $today = date('Y-m-d');
                             $tglmain = date('Y-m-d', strtotime($post->tglmain));
+                            $startFormatted = number_format($post->start, 2);
+                            $endFormatted = number_format($post->end, 2);
                         @endphp
                         @if ($tglmain >= $today)
                             <tr>
                                 <th class="font-semibold h-8 w-40 border border-gray-500">{{ $post->profile->namapemain }}</th>
-                                <th class="font-semibold h-8 w-40 border border-gray-500">{{ date('d/m', strtotime($post->tglmain)) }}  {{ $post->start }} - {{ $post->end }}</th>
+                                <th class="font-semibold h-8 w-40 border border-gray-500">{{ date('d/m', strtotime($post->tglmain)) }}  {{ $startFormatted }} - {{ $endFormatted }}</th>
                             </tr>
                         @endif
                     @endforeach
+                    @else
+                        <tr>
+                            <td colspan="6" class="font-semibold h-8 w-20 border border-gray-500 text-center">Tidak ada pesanan yang ditemukan.</td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-<style>
-    /* Style untuk layar besar */
-.lapangan {
-    width: 50%;
-}
-
-/* Media query untuk layar kecil */
-@media (max-width: 1024px) {
-    .lapangan {
-        width: 100%;
-    }
-}
-</style>
 @endsection
