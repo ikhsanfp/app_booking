@@ -62,12 +62,12 @@
       <option value="21.00">21.00</option>
     </select>
    </div>
-  <div>
-    <button class="font-bold text-white bg-green-400 rounded px-5 py-2 ml-12 hover:bg-green-800" type="submit">
-      Simpan</button>
-    <a href="/pesan"
-      class="font-bold text-white bg-red-400 rounded px-5 py-2 ml-2 hover:bg-red-800">
+  <div class="mt-4">
+    <a href="/pesanmasuk"
+      class="font-bold text-white bg-red-400 rounded px-5 py-2 ml-12 hover:bg-red-800">
       Batal</a>
+    <button class="font-bold text-white bg-green-400 rounded px-5 py-2 ml-2 hover:bg-green-800" type="submit">
+      Simpan</button>
   </div>
   </form>
 

@@ -1,11 +1,18 @@
 @extends('dashboard.admin.layouts.main')
 @section('container')
-<div>
+<div class="ml-12">
   @if(session()->has('success'))
-    <div class="p-3 rounded bg-green-500 text-green-100 mb-4">
-      {{ session('success') }}
-    </div>
-    @endif
+  <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert" id="alert">
+    <strong class="font-bold">Success!</strong>
+    <span class="block sm:inline">{{ session('success') }}</span>
+    <span class="absolute top-0 bottom-0 right-0 px-4 py-3" id="close-alert">
+      <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <title>Close</title>
+        <path fill-rule="evenodd" d="M14.348 5.652a.5.5 0 00-.707 0L10 9.293 6.36 5.652a.5.5 0 00-.708.708L9.293 10l-3.64 3.64a.5.5 0 10.708.708L10 10.707l3.64 3.64a.5.5 0 00.708-.708L10.707 10l3.64-3.64a.5.5 0 000-.708z" clip-rule="evenodd"/>
+      </svg>
+    </span>
+  </div>
+@endif
     <h3 class="font-bold ml-12 text-left mt-16 mb-5">List Akun</h3>
 </div>
 <table class="mt-6 ml-12">
@@ -104,19 +111,18 @@
 
 <div class="mt-5 ml-12 mr-40">
   {{ $pesan->links('pagination::tailwind') }}
-  </div>
-  <form action="{{ route('rename.user', $post->id) }}" method="POST">
-    @csrf
-    @method('PUT')
-    <div>
-        <label for="is_admin">Name:</label>
-        <input type="text" id="is_admin" name="is_admin" value="1">
-    </div>  
-    <div>
-        <!-- Contoh tombol dengan nilai -->
-        <button type="submit" name="status" value="active"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8.07125 0.318828C8.00156 0.2195 7.90877 0.138602 7.80087 0.0831005C7.69297 0.0275994 7.5732 -0.000840665 7.45187 0.000229579C7.33054 0.00129982 7.21128 0.0318482 7.10438 0.0892441C6.99748 0.14664 6.90613 0.229163 6.8382 0.329704L0.173942 10.1396C0.0967996 10.2528 0.0521427 10.3849 0.0448212 10.5217C0.0374997 10.6584 0.0677945 10.7946 0.132415 10.9153C0.197035 11.036 0.293507 11.1368 0.411353 11.2065C0.529198 11.2763 0.663908 11.3124 0.800847 11.311L14.3014 11.1919C14.438 11.1901 14.5715 11.1512 14.6877 11.0792C14.8038 11.0072 14.8981 10.9049 14.9604 10.7833C15.0228 10.6617 15.0508 10.5254 15.0415 10.3891C15.0321 10.2528 14.9858 10.1216 14.9075 10.0097L8.07125 0.318828Z" fill="#5E5E5E"/>
-          </svg></button>
-    </div>
-  </form>
+  </div>        
+  
+  <script>
+    function myFunction() {
+      if(!confirm("Are you sure you want to delete this record?"))
+      event.preventDefault();
+    }
+    const closeAlert = document.getElementById('close-alert');
+    closeAlert.addEventListener('click', () => {
+      const alert = document.getElementById('alert');
+      alert.style.display = 'none';
+    });
+  </script>
+  
 @endsection

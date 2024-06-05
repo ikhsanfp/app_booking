@@ -4,16 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cetak Laporan</title>
-    <link rel="stylesheet" href="{{ public_path('css/style.css') }}">
+    <link rel="stylesheet" href="">
+    {{-- <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      
+      .container {
+        border: 1px solid #ccc;
+        margin: 10px;
+        padding: 10px;
+        width: 600px;
+      }
+      
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      th, td {
+        text-align: left;
+        padding: 8px;
+        border: 1px solid #ccc;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      </style> --}}
 </head>
 <header>
-    <div>
-        <h1> 
-            <div class="date">Tanggal:{{ \Carbon\Carbon::now()->format('d/m/Y') }}</div>
-            <img src="../../../public/img/logostp.png" alt="Logo" class="logo">
-            SPORT CENTER AREA - SOLO TECNOPARK 
-        </h1>
-        <p> Jl. Ki Hajar Dewantara No.19, Jebres, Kec. Jebres Kota Surakarta, Jawa Tengah 57126</p>
+
+  <div class="container ">
+         
+            <div class="">Tanggal:{{ \Carbon\Carbon::now()->format('d/m/Y') }}</div>
+            
+              <img src="{{ public_path('logostp.png') }}" alt="Logo" class="logo">
+          <div class="">
+            <h1 class="">SPORT CENTER AREA - SOLO TECNOPARK</h1> 
+       
+            <p> Jl. Ki Hajar Dewantara No.19, Jebres, Kec. Jebres Kota Surakarta, Jawa Tengah 57126</p>
+          </div>
         <hr>
     </div>
 </header>
@@ -46,71 +77,70 @@
         </table>
     </div>
 </body>
-<style>
-    * {
-    margin: 20px; /* Atur margin secara seragam sebesar 20px pada semua sisi */
-    box-sizing: border-box;
-    flex-wrap: wrap;
+{{-- <style>
+* {
+  margin: 20px; /* Atur margin secara seragam sebesar 20px pada semua sisi */
+  box-sizing: border-box;
+  flex-wrap: wrap;
 }
 
 header {
-    text-align: center;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    border-bottom: 2px solid #fff; /* Menambahkan garis bawah pada header */
+  text-align: center;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  border-bottom: 2px solid #fff; /* Menambahkan garis bawah pada header */
 }
 
 .date {
-    position: absolute; /* Mengatur posisi absolut untuk tanggal */
-    top: 10px; /* Menempatkan tanggal di pojok kanan atas dengan jarak 10px dari tepi atas header */
-    right: 10px; /* Menempatkan tanggal di pojok kanan atas dengan jarak 10px dari tepi kanan header */
-    font-size: 14px;
-    color: black;
+  position: absolute; /* Mengatur posisi absolut untuk tanggal */
+  top: 10px; /* Menempatkan tanggal di pojok kanan atas dengan jarak 10px dari tepi atas header */
+  right: 10px; /* Menempatkan tanggal di pojok kanan atas dengan jarak 10px dari tepi kanan header */
+  font-size: 14px;
+  color: black;
 }
 
 header h1 {
-    .logo {
-        width: 80px;
-        display: inline-block;
-        float: left;
-        position: relative;
-        -webkit-transform: translate(-50%, 0);
-        -ms-transform: translate(-50%, 0);
-        transform: translate(-50%, 0);
-        z-index: 2;
-    }
-    text-align: center;
-    font-size: 1.5rem;
+.logo {
+  width: 80px;
+  display: inline-block;
+  float: left;
+  position: relative;
+  -webkit-transform: translate(-50%,0);
+  -ms-transform: translate(-50%,0);
+  transform: translate(-50%,0);
+  z-index: 2;
+}
+  text-align: center;
+  font-size: 1.5rem;
 }
 
-.hr {
+.hr{
     border: 5px;
     font-color: black;
 }
 body h3 {
-    text-align: center;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin-top: 20px; /* Atur jarak antara header dan body di sini */
-    padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin-top: 20px; /* Atur jarak antara header dan body di sini */
+  padding: 20px;
 }
 
 .table-wrapper {
-    margin: 0 auto; /* Membuat margin otomatis di sekitar div, membuatnya terletak di tengah halaman */
-    width: 50%; /* Atur lebar div sesuai kebutuhan Anda */
+  margin: 0 auto; /* Membuat margin otomatis di sekitar div, membuatnya terletak di tengah halaman */
+  width: 50%; /* Atur lebar div sesuai kebutuhan Anda */
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse; /* Menggabungkan batas tabel */
+  width: 100%;
+  border-collapse: collapse; /* Menggabungkan batas tabel */
 }
 
-th,
-td {
-    border: 1px solid black; /* Memberikan batas pada sel-sel tabel */
-    padding: 8px;
-    text-align: center; /* Mengatur teks di sel-sel tabel menjadi tengah */
+th, td {
+  border: 1px solid black; /* Memberikan batas pada sel-sel tabel */
+  padding: 8px;
+  text-align: center; /* Mengatur teks di sel-sel tabel menjadi tengah */
 }
 
-</style>
+</style> --}}
 </html>
