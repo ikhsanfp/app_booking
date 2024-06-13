@@ -33,6 +33,17 @@ class LaporanController extends Controller
         // Ambil data pesan yang telah difilter
         $lapangan = $lapangan->get();
 
+        //Periksa apakah data ditemukan
+        if ($lapangan->isEmpty()) {
+            // Kirim pesan ke view jika data tidak ditemukan
+            return view('dashboard.laporan', [
+                'title' => 'Filter Data',
+                'alert' => 'Data tidak ditemukan',
+                'active'=> 'laporan'
+                // Tambahkan data lain yang mungkin diperlukan oleh view
+            ]);
+        }
+
         // Ambil data pemain
         $post = Auth::user();
         $pemain = $post->namapemain;

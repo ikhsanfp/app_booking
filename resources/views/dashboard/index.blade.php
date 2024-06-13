@@ -4,7 +4,7 @@
 <div>
     <h3 class="font-semibold text-center mt-16">Jadwal Pemakaian Lapangan</h3>
 </div>
-<div class="flex justify-center flex-wrap lg:flex-nowrap">
+<div class="flex justify-center flex-wrap lg:flex-nowrap mx-auto">
     <div class="lapangan mx-2 flex justify-center w-full lg:w-1/2 place-content-center mt-10">
         <div>
             <h4 class="font-semibold text-center">Lapangan Basket</h4>
