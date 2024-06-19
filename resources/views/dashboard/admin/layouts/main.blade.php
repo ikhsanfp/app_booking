@@ -85,7 +85,7 @@
   <body>
     @include('dashboard.admin.layouts.navbar')
 
-    <div class="container mt-4">
+    <div class="container mt-4 max-w-full">
         @yield('container')
     </div>
         
