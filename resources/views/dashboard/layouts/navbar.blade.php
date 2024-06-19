@@ -5,7 +5,7 @@
     $pemain = Auth::user()->namapemain;
 @endphp
 
-<nav class="py-3 px-4 bg-white rounded-b-2xl shadow-xl relative">
+<nav class="py-3 px-4 bg-white rounded-b-2xl shadow-xl relative max-w-full">
     <div class="container mx-auto duration-300 ease-in-out">
       {{-- Web Menu --}}
       <div class="flex items-center justify-between">
