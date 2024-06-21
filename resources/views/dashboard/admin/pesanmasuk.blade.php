@@ -15,10 +15,11 @@
   </div>
 @endif
 
-  <h3 class="font-bold ml-12 text-left mt-16 mb-5">List Pengajuan Reservasi</h3>
+  
 </div>
+<h3 class="font-bold ml-12 text-left mt-16 mb-5">List Pengajuan Reservasi</h3>
 <div class="overflow-x-auto ml-12 mr-12">
-  <table class="mt-6 w-full min-w-[800px] font-bold">
+  <table class="mt-6 w-3/4 min-w-[800px] font-bold">
     <thead class="bg-gray-400">
       <tr>
         <th class="font-semibold h-10 w-10 border border-gray-500 text-center">No.</th>
@@ -89,7 +90,7 @@
       @endif
     </tbody>
   </table>
-  <div class="mt-5 flex justify-end">
+  <div class="w-3/4 mt-5 flex justify-end">
     {{ $pesan->links() }}
   </div>
 </div>

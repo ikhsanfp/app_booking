@@ -24,7 +24,7 @@
     Tambah</a>
 </div>
 <div class="overflow-x-auto ml-12 mr-12"> <!-- Tambahkan overflow-x-auto untuk mengaktifkan scrolling horizontal jika tabel melebihi lebar layar -->
-<table class="mt-6 w-full table-fixed"> <!-- Tambahkan kelas table-fixed -->
+<table class="mt-6 w-3/4 table-fixed"> <!-- Tambahkan kelas table-fixed -->
   <thead class="bg-gray-400">
       <tr>
           <th class="font-semibold h-8 w-10 border border-gray-500">No.</th>
@@ -67,7 +67,7 @@
       @endphp
       @if($tanggalMain->isSameDay($sekarang) || $tanggalMain->isAfter($sekarang))
       <tr>
-          <th class="h-8 w-20 border border-gray-500">{{ $id_user->firstItem() + $key }}</th>
+          <th class="h-8 w-10 border border-gray-500">{{ $id_user->firstItem() + $key }}</th>
           <th class="h-8 w-48 border border-gray-500">{{ $kodePesanan }}</th>
           <th class="h-8 w-48 border border-gray-500">{{ $jenisLapangan}}</th>
           <th class="h-8 w-48 border border-gray-500">{{ $post->tglmain}}</th>
@@ -84,7 +84,7 @@
   </tbody>
 </table>
 </div> <!-- Penutup overflow-x-auto -->
-<div class="mt-5 ml-12 mr-64">
+<div class="mt-5 ml-12 max-w-5xl">
     {{ $id_user->links('pagination::tailwind') }}
 </div>  
 

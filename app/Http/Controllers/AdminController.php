@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
-
+use PDF;
 class AdminController extends Controller
 {
 
@@ -36,20 +36,12 @@ class AdminController extends Controller
 
         ]);
     }
-    public function test()
-    {
-
-        return view('dashboard.admin.test', [
-            "title" => 'test',
-
-        ]);
-    }
 
     public function admlaporan()
     {
         return view('dashboard.admin.laporan', [
             "title" => "Laporan",
-            "active" => 'lapadmin'
+            "active" => 'laporan'
         ]);
     }
 
@@ -145,4 +137,43 @@ class AdminController extends Controller
         // Redirect to index
         return redirect()->route('create.user')->with(['success' => 'Data Berhasil Diubah!']);
     }
+    public function laporan(Request $request)
+    {
+        $tanggal = $request->input('tanggal');
+        $lapangan = Pesan::query();
+    
+        // Jika tanggal telah dipilih, tambahkan filter berdasarkan tanggal
+        if ($tanggal) {
+            $lapangan->whereDate('tglmain', $tanggal);
+        }
+    
+        // Ambil data pesan yang telah difilter
+        $lapangan = $lapangan->get();
+    
+        //Periksa apakah data ditemukan
+        if ($lapangan->isEmpty()) {
+            // Kirim pesan ke view jika data tidak ditemukan
+            return view('dashboard.admin.laporan', [
+                'title' => 'Filter Data',
+                'alert' => 'Data tidak ditemukan',
+                'active'=> 'laporan'
+                // Tambahkan data lain yang mungkin diperlukan oleh view
+            ]);
+        }
+    
+        // Ambil data pemain
+        $post = Auth::user();
+        $pemain = $post->namapemain;
+        $nohp = $post->nohp;
+    
+        // Kembalikan view dengan data yang diperlukan
+        $pdf  = PDF::loadview('dashboard.admin.cetakPesanan', [
+            "title" => "Cetak Pesanan",
+            "lapangan" => $lapangan,
+            "pemain" => $pemain,
+            "nohp" => $nohp,
+        ])->setpaper('a4', 'landscape');
+        return $pdf->stream('Laporan_Data_Pesanan' . time() . '.pdf');
+    }
+
 }

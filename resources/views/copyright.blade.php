@@ -10,7 +10,7 @@
 
 <body>
     <header>
-        <div class="bg-cover bg-center relative" style="background-image: url('{{ asset('img/home.png') }}');">
+        <div class="bg-cover bg-center relative" >
             <!--nav-->
             <nav class="bg-white shadow-xl py-1 px-2 rounded-b-2xl">
                 <div class="container mx-auto px-2 sm:px-6 lg:px-8">
@@ -57,23 +57,9 @@
                 document.getElementById('mobile-menu').classList.toggle('hidden');
             });
         </script>
-
-            <div class="p-10 min-h-screen bg-gray-700 bg-opacity-50 flex items-center justify-center">
-                <div class="main-body">
-                    <div class="text-white text-left max-w mx-auto">
-                        <h1 class="text-4xl md:text-5xl mb-8">Sport Center Area - Solo Technopark</h1>
-                        <p class="text-lg md:text-xl">Sebagai area pusat olahraga untuk menjaga kesehatan dan kebugaran Anda di Solo Technopark.</p>
-                        <p class="text-lg md:text-xl">Beragam fasilitas olahraga terbaik disini.</p>
-                    </div>
-                    <br>
-                    <div class="mt-8 md:mt-0 md:ml-8 flex space-x-4">
-                        <a href="/register" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded">Book Now</a>
-                        <button class="bg-transparent text-white px-4 py-2 rounded border border-white hover:bg-gray-600">Share</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </header>
+
     <script>
         function openNav() {
             document.getElementById("mySidenav").style.width = "250px";
@@ -83,80 +69,7 @@
             document.getElementById("mySidenav").style.width = "0";
         }
     </script>
-    <section id="fasilitas">
-        <div class="bg-gray-100">
-            <br>
-            <h2 class="text-3xl font-bold text-center text-black">Fasilitas Kami</h2>
-        
-                <!-- Lapangan Basket -->
-                <div class="flex items-start">
-                    <img src="./img/basket.png" alt="Lapangan Basket" class="w-1/2 h-auto rounded-lg shadow-md mt-4 mr-4 ml-4">
-                    <div class="ml-4">
-                        <h2 class="text-xl font-bold mb-4 mt-4 mr-4 ml-4">Lapangan Basket</h2>
-                        <p class="leading-relaxed mb-4 mt-4 mr-4 ml-4">Lorem ipsum dolor sit amet consectetur. Vitae morbi gravida massa nisl nullam proin. Lorem velit ullamcorper id mauris non mauris suspendisse sagittis. Iaculis metus malesuada non consectetur. Nunc sed massa justo dui id. Nisi cursus tortor orci amet lectus volutpat sed donec. Gravida ut cursus sed egestas velit sed id. Molestie varius neque pellentesque in eu aenean. Volutpat massa vel purus libero donec vestibulum dolor. Ornare risus pellentesque in aenean. Volutpat massa vel purus libero donec vestibulum dolor. Ornare risus pellentesque in aenean.</p>
-                    </div>
-                </div>
 
-                <!-- Lapangan Futsal -->
-                <div class="flex items-start">
-                    <div class="mr-4">
-                        <h2 class="text-xl font-bold mb-4 text-end mt-4 mr-4 ml-4">Lapangan Futsal</h2>
-                        <p class="leading-relaxed mb-4 mt-4 mr-4 ml-4">Lorem ipsum dolor sit amet consectetur. Vitae morbi gravida massa nisl nullam proin. Lorem velit ullamcorper id mauris non mauris suspendisse sagittis. Iaculis metus malesuada non consectetur. Nunc sed massa justo dui id. Nisi cursus tortor orci amet lectus volutpat sed donec. Gravida ut cursus sed egestas velit sed id. Molestie varius neque pellentesque in eu aenean. Volutpat massa vel purus libero donec vestibulum dolor. Ornare risus pellentesque in aenean. Volutpat massa vel purus libero donec vestibulum dolor. Ornare risus pellentesque in aenean.</p>
-                    </div>
-                    <img src="./img/futsal.png" alt="Lapangan Futsal" class="w-1/2 h-auto rounded-lg shadow-md mt-4 mr-4 ml-4">
-                </div>
-                <br>
-            </div>
-        </div>
-    </section>
-    <section id="jam">
-        <div class="bg-blue-400 py-10">
-            <br>
-            <h2 class="text-3xl font-bold text-center text-white mb-6">Jam Operasional Kami</h2>
-            <div class="flex justify-center">
-                <div class="overflow-x-auto w-full px-4">
-                    <table class="min-w-full bg-blue-400 rounded-lg shadow-md overflow-hidden">
-                        <thead class="bg-blue-400 text-white text-center">
-                            <tr>
-                                <th class="px-6 py-3 text-2xl font-medium">Lapangan Basket</th>
-                                <th class="px-6 py-3 text-2xl font-medium">Lapangan Futsal</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-blue-400 text-white text-center">
-                            <tr>
-                                <td class="px-6 py-4 text-lg">Minggu : -</td>
-                                <td class="px-6 py-4 text-lg">Minggu : -</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 text-lg">Senin : 09.00 - 21.00</td>
-                                <td class="px-6 py-4 text-lg">Senin : 09.00 - 21.00</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 text-lg">Selasa : 09.00 - 21.00</td>
-                                <td class="px-6 py-4 text-lg">Selasa : 09.00 - 21.00</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 text-lg">Rabu : 09.00 - 21.00</td>
-                                <td class="px-6 py-4 text-lg">Rabu : 09.00 - 21.00</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 text-lg">Kamis : 09.00 - 21.00</td>
-                                <td class="px-6 py-4 text-lg">Kamis : 09.00 - 21.00</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 text-lg">Jumat : 09.00 - 21.00</td>
-                                <td class="px-6 py-4 text-lg">Jumat : 09.00 - 21.00</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 text-lg">Sabtu : -</td>
-                                <td class="px-6 py-4 text-lg">Sabtu : -</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
     <section id="grup">
         <div class="bg-gray-100">
             <br>
@@ -196,11 +109,13 @@
             </div>
         </div>
     </section>
+
     <section id="kontak">
-        <div class="bg-white my-16 mx-16 text-blue-400">
+        <div class="bg-blue-400 pt-8 pb-8 pl-6 pr-8 text-white">
             <div class="flex flex-wrap justify-between space-y-8 md:space-y-0">
+
                 <!-- Informasi Solo Technopark -->
-                <div class=" md:w-1/3 mb-4 md:mb-0">
+                <div class="w-full md:w-1/3 mb-4 md:mb-0">
                     <img src="./img/logostp.png" alt="Solo Technopark Logo" class="h-12 mb-4">
                     <p>Menuju kawasan Solo Technopark yang,</p>
                     <p>inovatif dan berdaya saing internasional.</p>
@@ -234,7 +149,7 @@
                 </div>
 
                 <!-- Kontak Kami -->
-                <div class=" md:w-1/3 mb-4 md:mb-0">
+                <div class="w-full md:w-1/3 mb-4 md:mb-0">
                     <h2 class="font-bold text-xl mb-2">Contact Us</h2>
                     <p>Kawasan Sains dan Teknologi - Solo Technopark</p>
                     <p>Jl. Ki Hajar Dewantara No. 19 Jebres, Kec. Jebres, Kota Surakarta</p>
@@ -255,13 +170,12 @@
                         </iframe>
                     </div>
                 </div>
-            </div>
-            <div>
     </section>
+
     <footer>
-        <div class="p-3 bottom-0 right-0 left-0 bg-blue-400 text-center">
-            <ul class="text-xs text-white">
-                <li><a href="/copyright">Copyright @ 2024 | All Right Reserved</a></li>
+        <div class="p-3 bottom-0 right-0 left-0 bg-white text-center">
+            <ul class="text-xs">
+                <li><a href="#">Copyright @ 2024 | All Right Reserved</a></li>
                 <li>Design & Developed by IT Solo Technopark</li>
             </ul>
         </div>

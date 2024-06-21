@@ -3,7 +3,7 @@
     <div>
         <h3 class="font-bold ml-12 text-left mt-16 mb-5">Pilih Tanggal Reservasi Untuk Melihat Laporan</h3>
     </div>
-    <form class="ml-12 mt-2" action="{{ route('cetak.pesanan') }}" method="GET">
+    <form class="ml-12 mt-2" action="{{ route('cetak.pesananadmin') }}" method="GET">
         <!-- Tampilkan pesan error jika ada -->
         @if ($errors->has('tanggal'))
             <div class="alert alert-danger">
@@ -16,5 +16,10 @@
         <!-- Tombol untuk submit -->
         <input type="submit" value="Lihat Laporan" class="">
     </form>
+    @if (isset($alert))
+    <script>
+        alert('{{ $alert }}');
+    </script>
+@endif
     
 @endsection

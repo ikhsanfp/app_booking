@@ -24,7 +24,7 @@
         <table style="margin-bottom: 2rem">
             <tr>
                 <td style="height: 2rem; width: 10rem">ID</td>
-                <td style="" value="{{ $id_pemain }}">: {{ $id_pemain }}</td>
+                <td style="" value="{{ $pemain }}">: Admin {{ $pemain }}</tdAdmin >
             </tr>
             <tr>
                 <td style="height: 2rem">Nama Pemain</td>
@@ -47,18 +47,10 @@
             </thead>
             <tbody class="">
                 @foreach($lapangan as $index => $post)
-                @php
-                    $jenisLapangan = '';
-                    if($post->jenislap == 'Lapangan Basket'){
-                    $jenisLapangan ='Basket';
-                    } else if($post->jenislap == 'Lapangan Futsal'){
-                     $jenisLapangan ='Futsal';
-                    }
-                @endphp
                     <tr>
                         <td style="height: 2rem; text-align: center; width: 100%; border: 0px; border-style:solid; border-color: rgb(211, 211, 211); background-color: #dfdfdf">{{ $index + 1 }}</td>
-                        <td style="text-align: center; width: 100%; border: 0px; border-style:solid; border-color: rgb(211, 211, 211); background-color: #dfdfdf">{{ $jenisLapangan }}</td>
-                        <td style="text-align: center; width: 100%; border: 0px; border-style:solid; border-color: rgb(211, 211, 211); background-color: #dfdfdf">{{ date('d-m-Y', strtotime($post->tglmain)) }} / {{ $post->start }}.00 - {{ $post->end }}.00</td>
+                        <td style="text-align: center; width: 100%; border: 0px; border-style:solid; border-color: rgb(211, 211, 211); background-color: #dfdfdf">{{ $post->jenislap }}</td>
+                        <td style="text-align: center; width: 100%; border: 0px; border-style:solid; border-color: rgb(211, 211, 211); background-color: #dfdfdf">Tgl. {{ $post->tglmain }} Pukul {{ $post->start }}.00 - {{ $post->end }}.00</td>
                     </tr>
                 @endforeach
             </tbody>

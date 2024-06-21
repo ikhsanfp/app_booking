@@ -20,7 +20,7 @@ $pemain = Auth::user()->namapemain;
         <li class="py-4 px-6 rounded-3xl hover:text-blue-400 {{ ($active === 'pesanmasuk') ? 'active' : 'text-gray-600' }}">
           <a href="/pesanmasuk">Pesan Masuk</a>
         </li>
-        <li class="py-4 px-6 rounded-3xl hover:text-blue-400 {{ ($active === 'lap') ? 'active' : 'text-gray-600' }}">
+        <li class="py-4 px-6 rounded-3xl hover:text-blue-400 {{ ($active === 'laporan') ? 'active' : 'text-gray-600' }}">
           <a href="/lapadmin">Laporan</a>
         </li>
         <li class="py-4 px-6 rounded-3xl hover:text-blue-400 {{ ($active === 'createuser') ? 'active' : 'text-gray-600' }}">

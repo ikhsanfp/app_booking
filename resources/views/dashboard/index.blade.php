@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
-<h3 class="font-semibold text-center mt-16">Jadwal Pemakaian Lapangan</h3>
+<h3 class="font-semibold text-center mt-12">Jadwal Pemakaian Lapangan</h3>
 <div class="sm:flex">
     <div class="container ">
         <div class="lapangan block place-content-end mt-10  lg:flex">

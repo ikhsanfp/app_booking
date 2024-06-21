@@ -59,7 +59,7 @@ Route::get('/detail/{id}', [AdminController::class, 'show'])->name('pesanan.deta
 Route::put('/edit/pesanan/{id}', [AdminController::class, 'update'])->name('pesanan.update');
 
 Route::get('/cetakpesan', [LaporanController::class, 'filterData'])->name('cetak.pesanan');
-// Route::get('/cetakpesan', [LaporanController::class, 'print'])->name('cetak.pesanan');
+Route::get('/cetakpesanadmin', [AdminController::class, 'laporan'])->name('cetak.pesananadmin');
 // Route::get('/cetakpesanan', [PesanController::class, 'view_pdf'])->name('cetak.pesan');
 Route::get('/data', [PesanController::class, 'showData'])->name('data.index');
 
@@ -70,3 +70,4 @@ Route::put('/createuser/{id}', [AdminController::class, 'rename'])->name('rename
 Route::get('/upload', [ImageController::class, 'index'])->name('index');
 
 Route::post('/upload/store', [ImageController::class, 'upload'])->name('images.upload');
+Route::get('/copyright',[HomeController::class, 'copyright'])->name('copyright'); 

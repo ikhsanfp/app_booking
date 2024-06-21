@@ -1,7 +1,7 @@
 @extends('register.main')
 
 @section('container')
-<div class="flex mt-0 ">
+<div class="flex mt-0 w-full ">
   <div class="w-full md:w-1/2 bg-hijau p-8 mx-auto">
       <h1 class="text-4xl font-bold mb-8 mt-6 text-white">Register</h1>
       <form action="/register/store" method="post">

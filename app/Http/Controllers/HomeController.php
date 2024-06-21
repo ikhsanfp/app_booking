@@ -52,8 +52,11 @@ class HomeController extends Controller
             "active" => 'home'
         ]);
     }
-    public function ikhsan()
+    public function copyright()
     {
-        return view('ikhsan');
+        return view('copyright', [
+            "title" => "copyright",
+            "active" => 'home'
+        ]);
     }
 }

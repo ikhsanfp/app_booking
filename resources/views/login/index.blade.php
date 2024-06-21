@@ -1,7 +1,7 @@
 @extends('login.main')
 
 @section('container')
-<div class="flex mt-0 ">
+<div class="flex mt-0 w-full ">
   <div class="hidden md:block w-full md:w-1/2">
     <img src="./img/login.png" alt="Beautiful Image" class="object-cover w-full h-full">
 </div>
