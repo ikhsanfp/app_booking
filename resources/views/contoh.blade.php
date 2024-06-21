@@ -7,6 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Bug</h1>
+    <h1>Buggg</h1>
 </body>
 </html>

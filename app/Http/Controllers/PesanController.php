@@ -86,7 +86,7 @@ class PesanController extends Controller
         ]);
         // dd($validateData);
         Pesan::create($validateData);
-        return redirect('/pesan');
+        return redirect('/pesan')->with('success', 'Pesan lapangan berhasil dibuat.');
         // return redirect()->route('dashboard.pesan')
         //     ->with('success', 'Pesan lapangan berhasil dibuat.');
     }

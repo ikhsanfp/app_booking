@@ -1,20 +1,8 @@
 @extends('dashboard.admin.layouts.main')
 @section('container')
 <div class="ml-12">
-  @if(session()->has('success'))
-  <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert" id="alert">
-    <strong class="font-bold">Success!</strong>
-    <span class="block sm:inline">{{ session('success') }}</span>
-    <span class="absolute top-0 bottom-0 right-0 px-4 py-3" id="close-alert">
-      <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-        <title>Close</title>
-        <path fill-rule="evenodd" d="M14.348 5.652a.5.5 0 00-.707 0L10 9.293 6.36 5.652a.5.5 0 00-.708.708L9.293 10l-3.64 3.64a.5.5 0 10.708.708L10 10.707l3.64 3.64a.5.5 0 00.708-.708L10.707 10l3.64-3.64a.5.5 0 000-.708z" clip-rule="evenodd"/>
-      </svg>
-    </span>
-  </div>
-@endif
-</div>
-<h3 class="font-bold ml-12 text-left mt-16 mb-5">List Akun</h3>
+  
+<h3 class="font-bold ml-12 text-left mt-12 mb-5">List Akun</h3>
 <div class="overflow-x-auto ml-12 mr-12">
 <table class="min-w-[800px]">
   <thead class="bg-gray-400">
