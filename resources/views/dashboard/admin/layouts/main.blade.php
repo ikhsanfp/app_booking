@@ -90,5 +90,7 @@
     </div>
         
     @include('dashboard.admin.layouts.footer')
+    @include('sweetalert::alert')
+
   </body>
 </html>

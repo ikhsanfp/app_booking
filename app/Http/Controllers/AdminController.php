@@ -29,12 +29,19 @@ class AdminController extends Controller
     public function pesanmasuk()
     {
         $pesan = Pesan::paginate(6);
-        return view('dashboard.admin.pesanmasuk', [
-            "title" => 'Pesan Masuk',
-            "active" => 'pesanmasuk',
-            "pesan" => $pesan
+        $title = 'Pesan Masuk';
+        $active = 'pesanmasuk';
+        $judul = 'Delete Data!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($judul, $text);
 
-        ]);
+        return view('dashboard.admin.pesanmasuk',compact('pesan','title','active'));
+    //     return view('dashboard.admin.pesanmasuk', [
+    //         "title" => 'Pesan Masuk',
+    //         "active" => 'pesanmasuk',
+    //         "pesan" => $pesan
+
+    //     ]);
     }
 
     public function admlaporan()
@@ -102,7 +109,9 @@ class AdminController extends Controller
     {
         $pesan = Pesan::findOrFail($id); // Mengambil data item berdasarkan ID
         $pesan->delete(); // Menghapus item
-        return redirect()->route('pesanmasuk')->with('success', 'Pesanan berhasil dihapus!!!');
+        alert()->success('Terhapus!','Pesanan berhasil dihapus!!!');
+        return back();
+        //return redirect()->route('pesanmasuk')->with('success', 'Pesanan berhasil dihapus!!!');
     }
 
     public function createUser()

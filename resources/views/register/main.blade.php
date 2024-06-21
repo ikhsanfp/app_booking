@@ -13,5 +13,6 @@
     <div class="container mt-0 max-w-full">
         @yield('container')
     </div>
+    @include('sweetalert::alert')
 </body>
 </html>

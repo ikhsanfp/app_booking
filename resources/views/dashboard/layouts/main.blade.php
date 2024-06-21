@@ -99,6 +99,7 @@ input[type="time"] {
     </div>
         
     @include('dashboard.layouts.footer')
+    @include('sweetalert::alert')
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   </body>
 </html>

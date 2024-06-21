@@ -34,7 +34,7 @@ class LoginController extends Controller
             }
         }
 
-        return back()->with('loginError', 'Email atau password yang Anda masukkan salah!');
+        return back()->with('errors', 'Email atau password yang Anda masukkan salah!');
 
         // if(Auth::attempt($credentials)){
         //     $request->session()->regenerate();
