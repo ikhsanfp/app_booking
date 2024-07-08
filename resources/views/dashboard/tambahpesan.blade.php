@@ -46,7 +46,7 @@
   </div>
 </form>
 
-<script>
+{{-- <script>
    document.addEventListener("DOMContentLoaded", function() {
     var inputTime = document.getElementById("jam");
     inputTime.stepUp(); // Menggeser satu langkah untuk menghilangkan menit
@@ -84,35 +84,6 @@
       return false;
     }
 
-    // Validasi untuk memastikan jam main di antara 09:00 dan 21:00
-
-    // if (jenislap === "" || tglmain === "" || start === "" || end === "") {
-    //   alert("Mohon lengkapi semua input sebelum mengirimkan pesanan.");
-    //   return false;
-    // }
-    // if (start <= jamSaatIni || end <= jamSaatIni) {
-    //   alert("Tidak bisa memesan pada jam ini.");
-    //   return false;
-    // }
-
-
-    // if (end <= start) {
-    //   alert("Waktu main yang anda masukkan salah.");
-    //   return false;
-    // }
-
-    // var today = new Date().toISOString().split('T')[0];
-
-    // if (tglmain < today) {
-    //   alert("Tanggal main harus setelah hari ini.");
-    //   return false;
-    // }
-
-    // if (start < "09:00" || end > "21:00") {
-    //   alert("Jam main harus di antara 09:00 dan 21:00.");
-    //   return false;
-    // }
-
     for (var i = 0; i < existingOrders.length; i++) {
       var order = existingOrders[i];
       if (tglmain === order.tglmain && jenislap === order.jenislap) {
@@ -125,7 +96,7 @@
     return true;
 
   }
-</script>
+</script> --}}
 
 
 

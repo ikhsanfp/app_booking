@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdmController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
@@ -70,4 +71,6 @@ Route::put('/createuser/{id}', [AdminController::class, 'rename'])->name('rename
 Route::get('/upload', [ImageController::class, 'index'])->name('index');
 
 Route::post('/upload/store', [ImageController::class, 'upload'])->name('images.upload');
-Route::get('/copyright',[HomeController::class, 'copyright'])->name('copyright'); 
+Route::get('/copyright',[HomeController::class, 'copyright'])->name('copyright');
+
+Route::get('/ifp',[AdmController::class, 'index'])->name('ikhsan');

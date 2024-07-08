@@ -75,21 +75,74 @@ class PesanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // public function store(Request $request)
+    // {
+    //     $validateData = $request->validate([
+    //         'jenislap' => 're   quired',
+    //         'tglmain' => 'required',
+    //         'start' => 'required',
+    //         'end' => 'required',
+    //         'id_pemain' => 'required',
+    //     ]);
+    //     // dd($validateData);
+    //     Pesan::create($validateData);
+    //     return redirect('/pesan')->with('success', 'Pesan lapangan berhasil dibuat.');
+    //     // return redirect()->route('dashboard.pesan')
+    //     //     ->with('success', 'Pesan lapangan berhasil dibuat.');
+    // }
     public function store(Request $request)
-    {
-        $validateData = $request->validate([
-            'jenislap' => 'required',
-            'tglmain' => 'required',
-            'start' => 'required',
-            'end' => 'required',
-            'id_pemain' => 'required',
-        ]);
-        // dd($validateData);
-        Pesan::create($validateData);
-        return redirect('/pesan')->with('success', 'Pesan lapangan berhasil dibuat.');
-        // return redirect()->route('dashboard.pesan')
-        //     ->with('success', 'Pesan lapangan berhasil dibuat.');
+{
+    // Validasi data input
+    $validatedData = $request->validate([
+        'jenislap' => 'required',
+        'tglmain' => 'required|date|after:today',
+        'start' => 'required|date_format:H:i',
+        'end' => 'required|date_format:H:i|after:start',
+        'id_pemain' => 'required',
+    ]);
+
+    // Mendapatkan waktu saat ini
+    $waktuSaatIni = new DateTime();
+    $jamSaatIni = $waktuSaatIni->format('H:i');
+
+    // Memeriksa apakah waktu mulai dan selesai tidak melewati waktu saat ini untuk hari ini
+    if ($validatedData['tglmain'] == date('Y-m-d') && ($validatedData['start'] <= $jamSaatIni || $validatedData['end'] <= $jamSaatIni)) {
+        return redirect('/pesan/create')
+            ->withErrors(['error' => 'Tidak bisa memesan pada jam ini.'])
+            ->withInput();
     }
+
+    // Memeriksa apakah waktu mulai lebih awal dari waktu selesai
+    if ($validatedData['end'] <= $validatedData['start']) {
+        return redirect('/pesan/create')
+            ->withErrors(['error' => 'Waktu main yang anda masukkan salah.'])
+            ->withInput();
+    }
+
+    // Memeriksa apakah ada pesanan yang bentrok
+    $existingOrders = Pesan::where('jenislap', $validatedData['jenislap'])
+        ->where('tglmain', $validatedData['tglmain'])
+        ->where(function($query) use ($validatedData) {
+            $query->whereBetween('start', [$validatedData['start'], $validatedData['end']])
+                ->orWhereBetween('end', [$validatedData['start'], $validatedData['end']])
+                ->orWhere(function($query) use ($validatedData) {
+                    $query->where('start', '<=', $validatedData['start'])
+                          ->where('end', '>=', $validatedData['end']);
+                });
+        })
+        ->exists();
+
+    if ($existingOrders) {
+        return redirect('/pesan/create')
+            ->withErrors(['error' => 'Lapangan sudah dipesan pada rentang waktu yang sama.'])
+            ->withInput();
+    }
+
+    // Simpan data pesanan
+    Pesan::create($validatedData);
+
+    return redirect('/pesan')->with('success', 'Pesan lapangan berhasil dibuat.');
+}
 
     public function view(Request $request)
     {
