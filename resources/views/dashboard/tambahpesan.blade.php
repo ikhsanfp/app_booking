@@ -45,7 +45,6 @@
     <button class="font-bold text-white bg-green-400 rounded px-5 py-2 hover:bg-green-800" type="submit">Simpan</button>
   </div>
 </form>
-
 {{-- <script>
    document.addEventListener("DOMContentLoaded", function() {
     var inputTime = document.getElementById("jam");
@@ -97,8 +96,5 @@
 
   }
 </script> --}}
-
-
-
 
 @endsection

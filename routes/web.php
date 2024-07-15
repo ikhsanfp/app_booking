@@ -72,5 +72,3 @@ Route::get('/upload', [ImageController::class, 'index'])->name('index');
 
 Route::post('/upload/store', [ImageController::class, 'upload'])->name('images.upload');
 Route::get('/copyright',[HomeController::class, 'copyright'])->name('copyright');
-
-Route::get('/ifp',[AdmController::class, 'index'])->name('ikhsan');
