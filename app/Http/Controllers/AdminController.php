@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use PDF;
+use DateTime;
 class AdminController extends Controller
 {
 
@@ -78,40 +79,150 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'Status berhasil diperbarui');
     }
+    public function update(Request $request, $id)
+{
+    // Validasi data input
+    $validatedData = $request->validate([
+        'jenislap' => 'required',
+        'tglmain' => 'required|date|after_or_equal:' . date('Y-m-d'),
+        'start' => 'required|integer|min:0|max:24',
+        'end' => 'required|integer|min:0|max:24|gte:start',
+        'id_pemain' => 'required',
+    ], [
+        'tglmain.date' => 'Format tanggal tidak valid',
+        'tglmain.after_or_equal' => 'Tidak bisa memesan di tanggal atau bulan yang sudah terlewat',
+        'end.gte' => 'Tolong Perhatikan Waktu start dan end nya',
+    ]);
 
-    public function update(Request $request, $id): RedirectResponse
-    {
-        // Validate form
-        $this->validate($request, [
-            'jenislap' => 'required',
-            'tglmain' => 'required',
-            'start' => 'required',
-            'end' => 'required',
-            'id_pemain' => 'required',
-        ]);
-
-        // Get post by ID
-        $post = Pesan::findOrFail($id);
-        // dd($request->all());
-        // Update post with new data
-        $post->update([
-            'jenislap' => $request->jenislap,
-            'tglmain' => $request->tglmain,
-            'start' => $request->start,
-            'end' => $request->end,
-            // Include id_pemain in the update
-        ]);
-        // dd($post);
-        // Redirect to index
-        return redirect()->route('pesanmasuk')->with(['success' => 'Data Berhasil Diubah!']);
+    // Validasi waktu yang tidak bentrok dengan pesanan yang sudah ada
+    $existingOrders = Pesan::where('tglmain', $validatedData['tglmain'])
+                           ->where('jenislap', $validatedData['jenislap'])
+                           ->where('id', '!=', $id)
+                           ->get();
+    foreach ($existingOrders as $order) {
+        if (($validatedData['start'] >= $order->start && $validatedData['start'] < $order->end) ||
+            ($validatedData['end'] > $order->start && $validatedData['end'] <= $order->end) ||
+            ($validatedData['start'] <= $order->start && $validatedData['end'] >= $order->end)) {
+            return response()->json(['errors' => ['Lapangan sudah dipesan pada rentang waktu yang sama.']], 422);
+        }
     }
+
+    // Mendapatkan pesanan berdasarkan ID
+    $pesan = Pesan::findOrFail($id);
+
+    // Mengupdate pesanan dengan data baru
+    $pesan->update($validatedData);
+
+    return response()->json(['success' => 'Data Berhasil Diubah!']);
+}
+//     public function update(Request $request, $id): RedirectResponse
+// {
+//     // Cek apakah ada field yang belum diisi
+//     if (empty($request->jenislap) || empty($request->tglmain) || empty($request->start) || empty($request->end) || empty($request->id_pemain)) {
+//         return redirect()->route('detail', ['id' => $id])
+//                          ->withErrors(['error' => 'Mohon lengkapi semua data sebelum menyimpan pesanan.'])
+//                          ->withInput();
+//     }
+
+//     // Mendapatkan waktu saat ini
+//     $waktuSaatIni = new DateTime();
+//     $tanggalSaatIni = $waktuSaatIni->format('Y-m-d');
+//     $jamSaatIni = (int)$waktuSaatIni->format('H');
+//     $menitSaatIni = (int)$waktuSaatIni->format('i');
+
+//     // Validasi data input
+//     $validatedData = $request->validate([
+//         'jenislap' => 'required',
+//         'tglmain' => 'required|date|after_or_equal:' . $tanggalSaatIni,
+//         'start' => 'required|integer|min:0|max:24',
+//         'end' => 'required|integer|min:0|max:24|gte:start',
+//         'id_pemain' => 'required',
+//     ], [
+//         'tglmain.date' => 'Format tanggal tidak valid',
+//         'tglmain.after_or_equal' => 'Tidak bisa memesan di tanggal atau bulan yang sudah terlewat',
+//         'end.gte' => 'Tolong Perhatikan Waktu start dan end nya',
+//     ]);
+
+//     // Memeriksa apakah waktu mulai dan selesai tidak melewati waktu saat ini untuk hari ini
+//     if ($validatedData['tglmain'] == $tanggalSaatIni) {
+//         if ($validatedData['start'] <= $jamSaatIni && $menitSaatIni > 0) {
+//             return redirect()->route('detail', ['id' => $id])
+//                              ->withErrors(['error' => 'Tidak bisa memesan pada jam ini.'])
+//                              ->withInput();
+//         }
+//     }
+
+//     // Cek waktu jika end lebih kecil atau sama dengan start
+//     if ($validatedData['end'] <= $validatedData['start']) {
+//         return redirect()->route('detail', ['id' => $id])
+//                          ->withErrors(['error' => 'Tolong Perhatikan Waktu start dan end nya'])
+//                          ->withInput();
+//     }
+
+//     // Validasi waktu yang tidak bentrok dengan pesanan yang sudah ada
+//     $existingOrders = Pesan::where('tglmain', $validatedData['tglmain'])
+//                            ->where('jenislap', $validatedData['jenislap'])
+//                            ->where('id', '!=', $id) // Tambahkan kondisi untuk mengabaikan pesanan yang sedang diupdate
+//                            ->get();
+//     foreach ($existingOrders as $order) {
+//         if (($validatedData['start'] >= $order->start && $validatedData['start'] < $order->end) ||
+//             ($validatedData['end'] > $order->start && $validatedData['end'] <= $order->end) ||
+//             ($validatedData['start'] <= $order->start && $validatedData['end'] >= $order->end)) {
+//             return redirect()->route('detail', ['id' => $id])
+//                              ->withErrors(['error' => 'Lapangan sudah dipesan pada rentang waktu yang sama.'])
+//                              ->withInput();
+//         }
+//     }
+
+//     // Mendapatkan pesanan berdasarkan ID
+//     $pesan = Pesan::findOrFail($id);
+
+//     // Mengupdate pesanan dengan data baru
+//     $pesan->update([
+//         'jenislap' => $request->jenislap,
+//         'tglmain' => $request->tglmain,
+//         'start' => $request->start,
+//         'end' => $request->end,
+//         'id_pemain' => $request->id_pemain,
+//     ]);
+
+//     // Redirect ke index
+//     return redirect()->route('pesanmasuk')->with(['success' => 'Data Berhasil Diubah!']);
+// }
+
+    // public function update(Request $request, $id): RedirectResponse
+    // {
+    //     // Validate form
+    //     $this->validate($request, [
+    //         'jenislap' => 'required',
+    //         'tglmain' => 'required',
+    //         'start' => 'required',
+    //         'end' => 'required',
+    //         'id_pemain' => 'required',
+    //     ]);
+
+    //     // Get post by ID
+    //     $post = Pesan::findOrFail($id);
+    //     // dd($request->all());
+    //     // Update post with new data
+    //     $post->update([
+    //         'jenislap' => $request->jenislap,
+    //         'tglmain' => $request->tglmain,
+    //         'start' => $request->start,
+    //         'end' => $request->end,
+    //         // Include id_pemain in the update
+    //     ]);
+    //     // dd($post);
+    //     // Redirect to index
+    //     return redirect()->route('pesanmasuk')->with(['success' => 'Data Berhasil Diubah!']);
+    // }
     public function destroy($id)
     {
         $pesan = Pesan::findOrFail($id); // Mengambil data item berdasarkan ID
         $pesan->delete(); // Menghapus item
-        alert()->success('Terhapus!','Pesanan berhasil dihapus!!!');
-        return back();
-        //return redirect()->route('pesanmasuk')->with('success', 'Pesanan berhasil dihapus!!!');
+        // alert()->success('Terhapus!','Pesanan berhasil dihapus!!!');
+        // return back();
+        return redirect()->route('pesanmasuk')->with('success', 'Pesanan berhasil dihapus!!!');
     }
 
     public function createUser()

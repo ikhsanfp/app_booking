@@ -23,7 +23,7 @@ class PesanController extends Controller
     public function index(Request $request)
     {
         $query = $request;
-        $id_pemain = Auth::user()->id;
+        $id_pemain = Auth::user()->id;  
         $id_user = Pesan::where('id_pemain', $id_pemain, '%' . $query . '%')->paginate(6);
         // $pesan = Pesan::all();
         // dd($id_user);
@@ -137,7 +137,6 @@ class PesanController extends Controller
     $existingOrders = Pesan::where('tglmain', $validatedData['tglmain'])
                            ->where('jenislap', $validatedData['jenislap'])
                            ->get();
-
     foreach ($existingOrders as $order) {
         if (($validatedData['start'] >= $order->start && $validatedData['start'] < $order->end) ||
             ($validatedData['end'] > $order->start && $validatedData['end'] <= $order->end) ||

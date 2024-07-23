@@ -78,12 +78,7 @@ class LaporanController extends Controller
         //Periksa apakah data ditemukan
         if ($lapangan->isEmpty()) {
             // Kirim pesan ke view jika data tidak ditemukan
-            return view('dashboard.laporan', [
-                'title' => 'Filter Data',
-                'alert' => 'Data tidak ditemukan',
-                'active'=> 'laporan'
-                // Tambahkan data lain yang mungkin diperlukan oleh view
-            ]);
+            return back()->withErrors('error', 'Data Laporan Tidak Ditemukan');
         }
 
         // Ambil data pemain

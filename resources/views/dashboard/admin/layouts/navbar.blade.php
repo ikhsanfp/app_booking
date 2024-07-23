@@ -10,7 +10,7 @@ $pemain = Auth::user()->namapemain;
   {{-- Web Menu --}}
   <div class="flex items-center justify-between">
     <div class="mr-10 flex items-center">
-      <img src="./img/logostp.png" alt="Logo" class="h-10 w-auto" />
+      <img src="/img/logostp.png" alt="Logo" class="h-10 w-auto" />
     </div>
     <div class="hidden md:flex md:flex-grow web-menu duration-300 ease-in-out ml-4"> <!-- Hide by default, show on medium and above with smooth transition -->
       <ul class="flex space-x-4 font-bold">

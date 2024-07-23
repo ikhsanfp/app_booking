@@ -10,11 +10,7 @@
         <!-- Tombol untuk submit -->
         <input type="submit" value="Lihat Laporan" class="bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-800 cursor-pointer">
     </form>
-    @if (isset($alert))
-    <script>
-        alert('{{ $alert }}');
-    </script>
-@endif
+
 
 @endsection
  
