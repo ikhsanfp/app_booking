@@ -1,7 +1,8 @@
 @extends('dashboard.admin.layouts.main')
 
 @section('container')
-<h3 class="font-bold ml-12 text-left mt-16 mb-5">List Pengajuan Reservasi</h3>
+<div class="bg-blue-100 min-h-screen pt-4">
+<h3 class="font-bold ml-12 text-left mt-12 mb-5">List Pengajuan Reservasi</h3>
 <div class="overflow-x-auto ml-12 mr-12">
   <table class="mt-2 w-3/4 min-w-[800px] font-bold">
     <thead class="bg-gray-400">
@@ -39,13 +40,13 @@
         $endFormatted = number_format($post->end, 2);
       @endphp
       <tr>
-        <td class="h-8 w-10 border border-gray-500 text-center">{{ $pesan->firstItem() + $key }}</td>
-        <td class="h-8 w-20 border border-gray-500 text-center">{{ $kodePesanan }}</td>
-        <td class="h-8 w-48 border border-gray-500 text-center">{{ Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</td>
-        <td class="h-8 w-48 border border-gray-500 text-center">{{ $post->profile->namapemain }}</td>
-        <td class="h-8 w-48 border border-gray-500 text-center">{{ $jenisLapangan }}</td>
-        <td class="h-8 w-48 border border-gray-500 text-center">{{ $startFormatted }} - {{ $endFormatted }}</td>
-        <td class="h-8 w-48 border border-gray-500 text-center">
+        <td class="h-8 w-10 border bg-white border-gray-500 text-center">{{ $pesan->firstItem() + $key }}</td>
+        <td class="h-8 w-20 border bg-white border-gray-500 text-center">{{ $kodePesanan }}</td>
+        <td class="h-8 w-48 border bg-white border-gray-500 text-center">{{ Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</td>
+        <td class="h-8 w-48 border bg-white border-gray-500 text-center">{{ $post->profile->namapemain }}</td>
+        <td class="h-8 w-48 border bg-white border-gray-500 text-center">{{ $jenisLapangan }}</td>
+        <td class="h-8 w-48 border bg-white border-gray-500 text-center">{{ $startFormatted }} - {{ $endFormatted }}</td>
+        <td class="h-8 w-48 border bg-white border-gray-500 text-center">
           <div class="flex justify-center items-center space-x-2">
             <a href="{{ route('pesanan.detail', $post->id) }}" class="inline-flex justify-center items-center">
               <svg width="20" height="20" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -78,7 +79,7 @@
     {{ $pesan->links() }}
   </div>
 </div>
-
+</div>
 <script>
   // function myFunction() {
   //   if(!confirm("Are you sure you want to delete this record?"))

@@ -94,7 +94,7 @@ input[type="time"] {
   <body class=""">
     @include('dashboard.layouts.navbar')
 
-    <div class="container mt-4 max-w-full">
+    <div class="container mt-0 max-w-full">
         @yield('container')
     </div>
         

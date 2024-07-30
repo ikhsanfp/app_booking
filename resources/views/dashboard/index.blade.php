@@ -1,7 +1,8 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
-<h3 class="font-semibold text-center mt-12">Jadwal Pemakaian Lapangan</h3>
+<div class="bg-blue-100 min-h-screen pt-4">
+<h3 class="font-semibold text-center text-xl mt-12">Jadwal Pemakaian Lapangan</h3>
 <div class="sm:flex">
     <div class="container ">
         <div class="lapangan block place-content-end mt-10  lg:flex">
@@ -31,14 +32,14 @@
                             @endphp
                             @if ($tglmain >= $today)
                                 <tr>
-                                    <th class="font-semibold h-8 w-40 border border-gray-500">{{ $post->profile->namapemain }}</th>
-                                    <th class="font-semibold h-8 w-40 border border-gray-500">{{ date('d/m', strtotime($post->tglmain)) }} {{ $startFormatted }} - {{ $endFormatted }}</th>
+                                    <th class="font-semibold h-8 w-40 border bg-white border-gray-500">{{ $post->profile->namapemain }}</th>
+                                    <th class="font-semibold h-8 w-40 border bg-white border-gray-500">{{ date('d/m', strtotime($post->tglmain)) }} {{ $startFormatted }} - {{ $endFormatted }}</th>
                                 </tr>
                             @endif
                         @endforeach
                         @else
                             <tr>
-                                 <td colspan="6" class="font-semibold h-8 w-20 border border-gray-500 text-center">Tidak ada pesanan yang ditemukan.</td>
+                                 <td colspan="6" class="font-semibold h-8 w-20 border bg-white border-gray-500 text-center">Tidak ada pesanan yang ditemukan.</td>
                             </tr>
                         @endif
                     </tbody>
@@ -75,14 +76,14 @@
                             @endphp
                             @if ($tglmain >= $today)
                                 <tr>
-                                    <th class="font-semibold h-8 w-40 border border-gray-500">{{ $post->profile->namapemain }}</th>
-                                    <th class="font-semibold h-8 w-40 border border-gray-500">{{ date('d/m', strtotime($post->tglmain)) }}  {{ $startFormatted }} - {{ $endFormatted }}</th>
+                                    <th class="font-semibold h-8 w-40 border bg-white border-gray-500">{{ $post->profile->namapemain }}</th>
+                                    <th class="font-semibold h-8 w-40 border bg-white border-gray-500">{{ date('d/m', strtotime($post->tglmain)) }}  {{ $startFormatted }} - {{ $endFormatted }}</th>
                                 </tr>
                             @endif
                         @endforeach
                         @else
                             <tr>
-                                <td colspan="6" class="font-semibold h-8 w-20 border border-gray-500 text-center">Tidak ada pesanan yang ditemukan.</td>
+                                <td colspan="6" class="font-semibold h-8 w-20 border bg-white border-gray-500 text-center">Tidak ada pesanan yang ditemukan.</td>
                             </tr>
                         @endif
                     </tbody>
@@ -91,5 +92,6 @@
         </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

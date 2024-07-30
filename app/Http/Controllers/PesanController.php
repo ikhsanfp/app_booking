@@ -151,7 +151,7 @@ class PesanController extends Controller
     // Menyimpan pesanan
     Pesan::create($validatedData);
 
-    return redirect('/pesan')->with('success', 'Pesan lapangan berhasil dibuat.');
+    return redirect('/pesan')->with('success', 'Pesan lapangan berhasil dibuat, Silahkan cetak bukti reservasi di menu laporan!');
     }
 
 

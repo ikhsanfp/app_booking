@@ -1,6 +1,7 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
+<div class="bg-blue-100 min-h-screen pt-4">
 <form action="/addpesan" method="POST" onsubmit="return validateForm()">
   @csrf
   <input type="hidden" name="id_pemain" id="id_pemain" value="{{ $id_pemain }}"/>
@@ -9,7 +10,7 @@
   </div>
   <div class="ml-12 mt-2">
     <h3 class="font-semibold text-left mb-3">Jenis Lapangan</h3>
-    <div class="custom-select border border-zinc-400 rounded-sm w-46">
+    <div class="custom-select border bg-white border-zinc-400 rounded-sm w-46">
       <select name="jenislap" id="jenislap" class="ml-2 mt-3 mb-3">
         <option value="">Pilih Lapangan</option>
         <option value="Lapangan Basket">Lapangan Basket</option>
@@ -23,7 +24,7 @@
   </div>
   <div class="ml-12 mt-2">
     <h3 class="font-semibold text-left mb-3">Start</h3>
-    <div class="flex custom-select border border-zinc-400 rounded-sm w-46">
+    <div class="flex custom-select border bg-white border-zinc-400 rounded-sm w-46">
       <select name="start" id="start" class="ml-2 mt-3 mb-3">
         <option value="">Start</option>
         @for ($i = 9; $i <= 20; $i++)
@@ -45,6 +46,7 @@
     <button class="font-bold text-white bg-green-400 rounded px-5 py-2 hover:bg-green-800" type="submit">Simpan</button>
   </div>
 </form>
+</div>
 {{-- <script>
    document.addEventListener("DOMContentLoaded", function() {
     var inputTime = document.getElementById("jam");

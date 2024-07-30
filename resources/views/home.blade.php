@@ -12,7 +12,7 @@
     <header>
         <div class="bg-cover bg-center relative" style="background-image: url('{{ asset('img/home.png') }}');">
             <!--nav-->
-            <nav class="bg-white shadow-xl py-1 px-2 rounded-b-2xl">
+            <nav class="bg-gray-100 shadow py-1 px-2 rounded-b-2xl">
                 <div class="container mx-auto px-2 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
                     <div class="flex-shrink-0 flex items-center">
@@ -26,6 +26,7 @@
                             <li class="py-4 px-6 rounded-md hover:text-gray-600 {{ ($active === 'home') ? 'active' : 'text-gray-600' }}"><a href="/">Home</a></li>
                             <li class="py-4 px-6 rounded-md hover:text-gray-600 {{ ($active === 'fasilitas') ? 'active' : 'text-gray-600' }}"><a href="/#fasilitas">Fasilitas</a></li>
                             <li class="py-4 px-6 rounded-md hover:text-gray-600 {{ ($active === 'jam') ? 'active' : 'text-gray-600' }}"><a href="/#jam">Jam Operasional</a></li>
+                            <li class="py-4 px-6 rounded-md hover:text-gray-600 {{ ($active === 'grup') ? 'active' : 'text-gray-600' }}"><a href="/#grup">IT Group</a></li>
                             <li class="py-4 px-6 rounded-md hover:text-gray-600 {{ ($active === 'kontak') ? 'active' : 'text-gray-600' }}"><a href="/#kontak">Kontak</a></li>
                         </ul>
                     </div>
@@ -45,6 +46,7 @@
                             <li class="py-4 px-6 rounded-md hover:text-gray-600 {{ ($active === 'home') ? 'active' : 'text-gray-600' }}"><a href="/">Home</a></li>
                             <li class="py-4 px-6 rounded-md hover:text-gray-600 {{ ($active === 'fasilitas') ? 'active' : 'text-gray-600' }}"><a href="/#fasilitas">Fasilitas</a></li>
                             <li class="py-4 px-6 rounded-md hover:text-gray-600 {{ ($active === 'jam') ? 'active' : 'text-gray-600' }}"><a href="/#jam">Jam Operasional</a></li>
+                            <li class="py-4 px-6 rounded-md hover:text-gray-600 {{ ($active === 'grup') ? 'active' : 'text-gray-600' }}"><a href="/#grup">IT Group</a></li>
                             <li class="py-4 px-6 rounded-md hover:text-gray-600 {{ ($active === 'kontak') ? 'active' : 'text-gray-600' }}"><a href="/#kontak">Kontak</a></li>
                         </ul>
                     </div>
@@ -74,6 +76,7 @@
             </div>
         </div>
     </header>
+
     <script>
         function openNav() {
             document.getElementById("mySidenav").style.width = "250px";
@@ -83,17 +86,18 @@
             document.getElementById("mySidenav").style.width = "0";
         }
     </script>
+
     <section id="fasilitas">
-        <div class="bg-gray-100">
+        <div class="bg-blue-200">
             <br>
-            <h2 class="text-3xl font-bold text-center text-black">Fasilitas Kami</h2>
+            <h2 class="text-2xl font-bold text-center text-black">Fasilitas Kami</h2>
         
                 <!-- Lapangan Basket -->
                 <div class="flex items-start">
                     <img src="./img/basket.png" alt="Lapangan Basket" class="w-1/2 h-auto rounded-lg shadow-md mt-4 mr-4 ml-4">
                     <div class="ml-4">
                         <h2 class="text-xl font-bold mb-4 mt-4 mr-4 ml-4">Lapangan Basket</h2>
-                        <p class="leading-relaxed mb-4 mt-4 mr-4 ml-4">Lorem ipsum dolor sit amet consectetur. Vitae morbi gravida massa nisl nullam proin. Lorem velit ullamcorper id mauris non mauris suspendisse sagittis. Iaculis metus malesuada non consectetur. Nunc sed massa justo dui id. Nisi cursus tortor orci amet lectus volutpat sed donec. Gravida ut cursus sed egestas velit sed id. Molestie varius neque pellentesque in eu aenean. Volutpat massa vel purus libero donec vestibulum dolor. Ornare risus pellentesque in aenean. Volutpat massa vel purus libero donec vestibulum dolor. Ornare risus pellentesque in aenean.</p>
+                        <p class="leading-relaxed mb-4 mt-4 mr-4 ml-4">Lapangan basket di Solo Technopark adalah fasilitas olahraga yang disediakan oleh Solo Technopark, sebuah kawasan pengembangan teknologi dan inovasi yang terletak di Kota Surakarta, Jawa Tengah. Solo Technopark dikenal sebagai pusat penelitian, pengembangan, dan pelatihan yang mendukung kemajuan teknologi dan industri kreatif di daerah tersebut. Lapangan basket di Solo Technopark adalah salah satu fasilitas yang menunjukkan komitmen Solo Technopark dalam menyediakan lingkungan yang mendukung tidak hanya perkembangan teknologi dan industri, tetapi juga kesehatan dan kesejahteraan masyarakatnya.</p>
                     </div>
                 </div>
 
@@ -101,28 +105,52 @@
                 <div class="flex items-start">
                     <div class="mr-4">
                         <h2 class="text-xl font-bold mb-4 text-end mt-4 mr-4 ml-4">Lapangan Futsal</h2>
-                        <p class="leading-relaxed mb-4 mt-4 mr-4 ml-4">Lorem ipsum dolor sit amet consectetur. Vitae morbi gravida massa nisl nullam proin. Lorem velit ullamcorper id mauris non mauris suspendisse sagittis. Iaculis metus malesuada non consectetur. Nunc sed massa justo dui id. Nisi cursus tortor orci amet lectus volutpat sed donec. Gravida ut cursus sed egestas velit sed id. Molestie varius neque pellentesque in eu aenean. Volutpat massa vel purus libero donec vestibulum dolor. Ornare risus pellentesque in aenean. Volutpat massa vel purus libero donec vestibulum dolor. Ornare risus pellentesque in aenean.</p>
+                        <p class="leading-relaxed mb-4 mt-4 mr-4 ml-4">Lapangan futsal di Solo Technopark adalah salah satu fasilitas olahraga yang disediakan di dalam kompleks Solo Technopark, sebuah kawasan pengembangan teknologi dan inovasi yang terletak di Kota Surakarta, Jawa Tengah. Solo Technopark terkenal sebagai pusat penelitian, pengembangan, dan pelatihan yang mendukung kemajuan teknologi dan industri kreatif di wilayah tersebut. Lapangan futsal di Solo Technopark merupakan salah satu fasilitas yang mencerminkan komitmen Solo Technopark dalam menyediakan lingkungan yang mendukung tidak hanya perkembangan teknologi dan industri, tetapi juga kesehatan dan kesejahteraan masyarakatnya.</p>
                     </div>
                     <img src="./img/futsal.png" alt="Lapangan Futsal" class="w-1/2 h-auto rounded-lg shadow-md mt-4 mr-4 ml-4">
                 </div>
-                <br>
-            </div>
+            <br>
+                <div class="grid grid-cols-3 gap-10 object-center">
+                    <!-- Row 1 -->
+                    <div class="text-center justify-center items-center ml-4 mr-4">
+                        <img src="./img/lapangan1.JPG" alt="lapangan1" class="mx-auto w-full">
+                    </div>
+                    <div class="text-center justify-center items-center ml-4 mr-4">
+                        <img src="./img/lapangan1.JPG" alt="lapangan3" class="mx-auto w-full">
+                    </div>
+                    <div class="text-center justify-center items-center mr-4 ml-4">
+                        <img src="./img/lapangan1.JPG" alt="lapangan3" class="mx-auto w-full">
+                    </div>
+
+                    <!-- Row 2 -->
+                        <div class="text-center justify-center items-center ml-4 mr-4">
+                            <img src="./img/lapangan4.JPG" alt="lapangan4" class="mx-auto w-full">
+                        </div>
+                        <div class="text-center justify-center items-center ml-4 mr-4">
+                            <img src="./img/lapangan5.JPG" alt="lapangan5" class="mx-auto w-full">
+                        </div>
+                        <div class="text-center justify-center items-center mr-4 ml-4">
+                            <img src="./img/lapangan6.JPG" alt="lapangan6" class="mx-auto w-full">
+                        </div>
+                </div>
+            <br>
         </div>
     </section>
+
     <section id="jam">
-        <div class="bg-blue-400 py-10">
+        <div class="bg-cover bg-center relative" style="background-image: url('{{ asset('img/bgjam.jpg') }}');">
             <br>
             <h2 class="text-3xl font-bold text-center text-white mb-6">Jam Operasional Kami</h2>
             <div class="flex justify-center">
                 <div class="overflow-x-auto w-full px-4">
-                    <table class="min-w-full bg-blue-400 rounded-lg shadow-md overflow-hidden">
-                        <thead class="bg-blue-400 text-white text-center">
+                    <table class="min-w-full  rounded-lg shadow-md overflow-hidden">
+                        <thead class="text-white text-center">
                             <tr>
                                 <th class="px-6 py-3 text-2xl font-medium">Lapangan Basket</th>
                                 <th class="px-6 py-3 text-2xl font-medium">Lapangan Futsal</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-blue-400 text-white text-center">
+                        <tbody class=" text-white text-center">
                             <tr>
                                 <td class="px-6 py-4 text-lg">Minggu : -</td>
                                 <td class="px-6 py-4 text-lg">Minggu : -</td>
@@ -157,31 +185,32 @@
             </div>
         </div>
     </section>
+
     <section id="grup">
-        <div class="bg-gray-100">
+        <div class="bg-blue-200">
             <br>
                 <h1 class="text-center text-3xl font-semibold text-gray-700">Strategic IT Group</h1>
 
-            <div class="flex justify-center items-center min-h-screen bg-gray-100">
+            <div class="flex justify-center items-center min-h-screen bg-blue-200">
                 <div class="grid grid-cols-3 gap-10">
                     <!-- Row 1 -->
-                    <div class="text-center justify-center items-center w-1/2">
-                        <img src="./img/vector.jpg" alt="Team 1" class="mx-auto">
-                        <h2 class="text-lg font-semibold mt-2">Team 1</h2>
+                    <div class="text-center justify-center items-center ml-4 mr-4">
+                        <img src="./img/thesa.png" alt="Team 1" class="mx-auto">
+                        <h2 class="text-lg font-semibold mt-2">Thesallonika</h2>
                         <p>Internship</p>
                     </div>
-                    <div class="text-center justify-center items-center w-1/2">
-                        <img src="./img/vector.jpg" alt="Team 2" class="mx-auto">
-                        <h2 class="text-lg font-semibold mt-2">Team 2</h2>
+                    <div class="text-center justify-center items-center ml-4 mr-4">
+                        <img src="./img/ikhsan.png" alt="Team 2" class="mx-auto">
+                        <h2 class="text-lg font-semibold mt-2">Ikhsan</h2>
                         <p>Internship</p>
                     </div>
-                    <div class="text-center justify-center items-center w-1/2">
-                        <img src="./img/vector.jpg" alt="Team 3" class="mx-auto">
-                        <h2 class="text-lg font-semibold mt-2">Team 3</h2>
+                    <div class="text-center justify-center items-center ml-4 mr-4">
+                        <img src="./img/selvia.png" alt="Team 3" class="mx-auto">
+                        <h2 class="text-lg font-semibold mt-2">Selvia</h2>
                         <p>Internship</p>
                     </div>
                     
-                    <!-- Row 2 -->
+                    {{-- <!-- Row 2 -->
                         <div class="text-center justify-center items-center w-1/2">
                             <img src="./img/vector.jpg" alt="Team 3 Head Division" class="mx-auto">
                             <h2 class="text-lg font-semibold mt-2">Team 4</h2>
@@ -191,16 +220,18 @@
                             <img src="./img/vector.jpg" alt="Team 3 Staff Division" class="mx-auto">
                             <h2 class="text-lg font-semibold mt-2">Team 5</h2>
                             <p>Staff Division</p>
-                        </div>
+                        </div> --}}
                 </div>
             </div>
         </div>
     </section>
+
     <section id="kontak">
-        <div class="bg-white my-16 mx-16 text-blue-400">
+        <div class="bg-cyan-800 pt-8 pb-8 pl-6 pr-8 text-white">
             <div class="flex flex-wrap justify-between space-y-8 md:space-y-0">
+
                 <!-- Informasi Solo Technopark -->
-                <div class=" md:w-1/3 mb-4 md:mb-0">
+                <div class="w-full md:w-1/3 mb-4 md:mb-0">
                     <img src="./img/logostp.png" alt="Solo Technopark Logo" class="h-12 mb-4">
                     <p>Menuju kawasan Solo Technopark yang,</p>
                     <p>inovatif dan berdaya saing internasional.</p>
@@ -209,37 +240,40 @@
 
                         <div class="flex items-center">
                             <img src="./img/facebook.png" alt="Facebook" class="h-6 w-6 mr-2 mt-4 ml-4">
-                            <p>Facebook</p>
+                            <a href="{{ url('https://www.facebook.com/solotechnopark.id?mibextid=ZbWKwL') }}">Facebook</a>
 
                             <img src="./img/instagram.png" alt="Instagram" class="h-6 w-6 mr-2 mt-4 ml-4">
-                            <p>Instagram</p>
+                            <a href="{{ url('https://www.instagram.com/solotechnopark_official?igsh=MTEyN2lqdmo0NnFnNA%3D%3D') }}">Instagram</a>
                         </div>
 
                         <div class="flex items-center">
                             <img src="./img/youtube.png" alt="YouTube" class="h-6 w-6 mr-2 mt-4 ml-4">
-                            <p>YouTube</p>
+                            <a href="{{ url('https://youtube.com/@solotechnopark5339?si=3NXkF2YfuA-_ywFh') }}">Youtube</a>
                         
-                            <img src="./img/x.png" alt="YouTube" class="h-6 w-6 mr-2 mt-4 ml-4">
-                            <p>Twitter</p>
+                            <img src="./img/x.png" alt="Twitter" class="h-6 w-6 mr-2 mt-4 ml-4">
+                            <a href="{{ url('https://x.com/solo_technopark') }}">Twitter</a>
                         </div>
 
                         <div class="flex items-center">
-                            <img src="./img/linkid.png" alt="YouTube" class="h-6 w-6 mr-2 mt-4 ml-4">
-                            <p>LinkedIn</p>
+                            <img src="./img/linkid.png" alt="LinkedIn" class="h-6 w-6 mr-2 mt-4 ml-4">
+                            <a href="{{ url('https://www.linkedin.com/company/solo-technopark/') }}">LinkedIn</a>
                             
-                            <img src="./img/tiktok.png" alt="YouTube" class="h-6 w-6 mr-2 mt-4 ml-4">
-                            <p>tiktok</p>
+                            <img src="./img/tiktok.png" alt="Tiktok" class="h-6 w-6 mr-2 mt-4 ml-4">
+                             <a href="{{ url('https://www.tiktok.com/@solotechnopark?_t=8o9COpIiqK0&_r=1') }}">Tiktok</a>
                         </div>
 
                 </div>
 
                 <!-- Kontak Kami -->
-                <div class=" md:w-1/3 mb-4 md:mb-0">
+                <div class="w-full md:w-1/3 mb-4 md:mb-0">
                     <h2 class="font-bold text-xl mb-2">Contact Us</h2>
                     <p>Kawasan Sains dan Teknologi - Solo Technopark</p>
                     <p>Jl. Ki Hajar Dewantara No. 19 Jebres, Kec. Jebres, Kota Surakarta</p>
                     <p>(+62) 271-666-628</p>
-                    <p>info@solotechnopark.id</p>
+                    <a href="https://wa.me/6285962324219?text=Halo%20Restu,%20saya%20ingin%20mengetahui%20lebih%20lanjut"
+                    target="_blank">
+                    0859-6232-4219 (Restu)</a>
+                    <p>info@solotechnopark.id</p> 
                 </div>
 
                 <!-- Peta Lokasi -->
@@ -255,16 +289,16 @@
                         </iframe>
                     </div>
                 </div>
-            </div>
-            <div>
     </section>
+
     <footer>
-        <div class="p-3 bottom-0 right-0 left-0 bg-blue-400 text-center">
-            <ul class="text-xs text-white">
-                <li><a href="/copyright">Copyright @ 2024 | All Right Reserved</a></li>
+        <div class="p-3 bottom-0 right-0 left-0 bg-gray-100 text-center">
+            <ul class="text-xs">
+                <li><a href="#">Copyright @ 2024 | All Right Reserved</a></li>
                 <li>Design & Developed by IT Solo Technopark</li>
             </ul>
         </div>
     </footer>
 </body>
 </html>
+

@@ -1,7 +1,7 @@
 @extends('dashboard.admin.layouts.main')
 @section('container')
+<div class="bg-blue-100 min-h-screen pt-4">
 <div class="ml-12">
-  
 <h3 class="font-bold ml-12 text-left mt-12 mb-5">List Akun</h3>
 <div class="overflow-x-auto ml-12 mr-12">
 <table class="min-w-[800px]">
@@ -27,10 +27,10 @@
         }
     @endphp
       <tr>
-          <th class="h-8 w-10 border border-gray-500">{{ $post->id}}</th>
-          <th class="h-8 w-48 border border-gray-500">{{ Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</th>
-          <th class="h-8 w-48 border border-gray-500">{{ $post->namapemain }}</th>
-          <th class="h-8 w-48 border border-gray-500 flex justify-center items-center">               
+          <th class="h-8 w-10 border bg-white border-gray-500">{{ $post->id}}</th>
+          <th class="h-8 w-48 border bg-white border-gray-500">{{ Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</th>
+          <th class="h-8 w-48 border bg-white border-gray-500">{{ $post->namapemain }}</th>
+          <th class="h-8 w-48 border bg-white border-gray-500 flex justify-center items-center">               
             @if ($post->is_admin == '0')
             <form class="mr-3" action="{{ route('rename.user', $post->id) }}" method="POST">
               @csrf
@@ -90,13 +90,14 @@
             </form> 
             @endif 
           </th>
-          <th class="h-8 w-48 border border-gray-500">{{ $cekUser }}</th>
+          <th class="h-8 w-48 border bg-white border-gray-500">{{ $cekUser }}</th>
       </tr>
       {{-- @endif --}}
       @endif
       @endforeach
   </tbody>
 </table>
+</div>
 </div>
 <div class="w-7/12 mt-5 ml-12 mr-40">
   {{ $pesan->links('pagination::tailwind') }}

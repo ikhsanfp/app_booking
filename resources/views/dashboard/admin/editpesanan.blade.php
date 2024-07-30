@@ -1,6 +1,6 @@
 @extends('dashboard.admin.layouts.main')
 @section('container')
-
+<div class="bg-blue-100 min-h-screen pt-4">
 <form action="{{ route('pesanan.update', $post->id) }}" method="POST">
     @csrf
     @method('put')
@@ -13,7 +13,7 @@
   <div>
     <h3 class="font-semibold ml-12 text-left mt-2 mb-3">Jenis Lapangan</h3>
   </div>
-  <div class="custom-select ml-12 text-left  border border-zinc-400 rounded-sm w-46">
+  <div class="custom-select ml-12 text-left  border bg-white border-zinc-400 rounded-sm w-46">
     <select name="jenislap" type="text" id="jenislap"  class="ml-2 text-left mt-3 mb-3">
       <option value="pilih">Pilih Lapangan</option>
       <option value="Lapangan Basket">Lapangan Basket</option>
@@ -29,7 +29,7 @@
   <div class="ml-12 mt-3 mb-3">
     <h3>Start</h3>
   </div>
-  <div class="flex custom-select ml-12 text-left  border border-zinc-400 rounded-sm w-46">
+  <div class="flex custom-select ml-12 text-left  border bg-white border-zinc-400 rounded-sm w-46">
     <select name="start" type="text" id="start"  class="ml-2 text-left mt-3 mb-3">
       <option value="">Start</option>
       <option value="09.00">09.00</option>
@@ -70,5 +70,5 @@
       Simpan</button>
   </div>
   </form>
-
+</div>
 @endsection
