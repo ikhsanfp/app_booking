@@ -34,5 +34,8 @@ class DatabaseSeeder extends Seeder
             'nohp' => '066839573774',
             'password' => bcrypt('123456')
         ]);
+        $this->call([
+            ImageSeeder::class,
+        ]);
     }
 }

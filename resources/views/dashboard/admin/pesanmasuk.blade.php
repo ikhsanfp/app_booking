@@ -2,6 +2,27 @@
 
 @section('container')
 <h3 class="font-bold ml-12 text-left mt-16 mb-5">List Pengajuan Reservasi</h3>
+
+@if(session('success'))
+    <div id="alert" class="alert alert-success">
+        {{ session('success') }}
+        <button type="button" id="close-alert" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+@if($errors->any())
+    <div id="alert" class="alert alert-danger">
+        @foreach($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+        <button type="button" id="close-alert" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
 <div class="overflow-x-auto ml-12 mr-12">
   <table class="mt-2 w-3/4 min-w-[800px] font-bold">
     <thead class="bg-gray-400">
@@ -53,7 +74,7 @@
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2283 4.42741C11.9546 4.15374 11.5833 4 11.1962 4C10.8092 4 10.4379 4.15374 10.1642 4.42741L9.82014 4.77192L12.2288 7.18059L12.5723 6.83657C12.7079 6.70101 12.8155 6.54007 12.8889 6.36294C12.9622 6.18581 13 5.99597 13 5.80424C13 5.61252 12.9622 5.42267 12.8889 5.24555C12.8155 5.06842 12.7079 4.90748 12.5723 4.77192L12.2283 4.42741ZM11.5403 7.86864L9.1316 5.45997L4.70841 9.88365C4.61162 9.98046 4.544 10.1025 4.51328 10.2359L4.01257 12.4038C3.99391 12.4842 3.99605 12.5681 4.01879 12.6476C4.04152 12.727 4.08411 12.7993 4.14252 12.8577C4.20094 12.9161 4.27326 12.9587 4.35269 12.9815C4.43211 13.0042 4.51601 13.0063 4.59649 12.9877L6.76478 12.4874C6.89801 12.4566 7.01991 12.389 7.11659 12.2923L11.5403 7.86864Z" fill="white"/>
               </svg>
             </a>
-            <form action="{{ route('pesan.destroy', $post->id) }}" method="POST" onclick="myFunction()"  class="inline-flex justify-center items-center">
+            <form action="{{ route('pesan.destroy', $post->id) }}" method="POST" onsubmit="return confirmDelete(event)" class="inline-flex justify-center items-center">
               @csrf
               @method('DELETE')
               <button type="submit" class="">
@@ -80,15 +101,17 @@
 </div>
 
 <script>
-  function myFunction() {
-    if(!confirm("Are you sure you want to delete this record?"))
-    event.preventDefault();
-  }
   const closeAlert = document.getElementById('close-alert');
   closeAlert.addEventListener('click', () => {
     const alert = document.getElementById('alert');
     alert.style.display = 'none';
   });
+
+  function confirmDelete(event) {
+    if (!confirm('Are you sure you want to delete this record?')) {
+      event.preventDefault();
+    }
+  }
 </script>
 
 @endsection

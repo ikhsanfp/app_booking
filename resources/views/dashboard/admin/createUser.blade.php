@@ -46,7 +46,7 @@
               </div>
             </form>
             @else
-            <form action="{{ route('rename.user', $post->id) }}" method="POST">
+            <form class="mr-3"action="{{ route('rename.user', $post->id) }}" method="POST">
               @csrf
               @method('PUT')
               <div>

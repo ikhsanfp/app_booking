@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pesan;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

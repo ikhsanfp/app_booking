@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/css/main.css">
     {{-- <link rel="stylesheet" href="style.css"> --}}
 </head>
-
 <body>
     <header>
         <div class="bg-cover bg-center relative" style="background-image: url('{{ asset('img/home.png') }}');">
@@ -87,23 +86,20 @@
         <div class="bg-gray-100">
             <br>
             <h2 class="text-3xl font-bold text-center text-black">Fasilitas Kami</h2>
-        
-                <!-- Lapangan Basket -->
-                <div class="flex items-start">
-                    <img src="./img/basket.png" alt="Lapangan Basket" class="w-1/2 h-auto rounded-lg shadow-md mt-4 mr-4 ml-4">
-                    <div class="ml-4">
-                        <h2 class="text-xl font-bold mb-4 mt-4 mr-4 ml-4">Lapangan Basket</h2>
-                        <p class="leading-relaxed mb-4 mt-4 mr-4 ml-4">Lorem ipsum dolor sit amet consectetur. Vitae morbi gravida massa nisl nullam proin. Lorem velit ullamcorper id mauris non mauris suspendisse sagittis. Iaculis metus malesuada non consectetur. Nunc sed massa justo dui id. Nisi cursus tortor orci amet lectus volutpat sed donec. Gravida ut cursus sed egestas velit sed id. Molestie varius neque pellentesque in eu aenean. Volutpat massa vel purus libero donec vestibulum dolor. Ornare risus pellentesque in aenean. Volutpat massa vel purus libero donec vestibulum dolor. Ornare risus pellentesque in aenean.</p>
-                    </div>
+            <div class="flex items-start">
+                <img src="./img/basket.png" alt="Lapangan Basket" class="w-48 h-48 rounded-lg shadow-md mt-4 mr-4 ml-4">
+                <div class="ml-4">
+                    <h2 class="text-xl font-bold mb-4 mt-4 mr-4 ml-4">Lapangan Basket</h2>
+                    <p class="leading-relaxed mb-4 mt-4 mr-4 ml-4">Lorem ipsum dolor sit amet consectetur. Vitae morbi gravida massa nisl nullam proin. Lorem velit ullamcorper id mauris non mauris suspendisse sagittis. Iaculis metus malesuada non consectetur. Nunc sed massa justo dui id. Nisi cursus tortor orci amet lectus volutpat sed donec. Gravida ut cursus sed egestas velit sed id. Molestie varius neque pellentesque in eu aenean. Volutpat massa vel purus libero donec vestibulum dolor. Ornare risus pellentesque in aenean. Volutpat massa vel purus libero donec vestibulum dolor. Ornare risus pellentesque in aenean.</p>
                 </div>
-
+            </div>
                 <!-- Lapangan Futsal -->
                 <div class="flex items-start">
                     <div class="mr-4">
                         <h2 class="text-xl font-bold mb-4 text-end mt-4 mr-4 ml-4">Lapangan Futsal</h2>
                         <p class="leading-relaxed mb-4 mt-4 mr-4 ml-4">Lorem ipsum dolor sit amet consectetur. Vitae morbi gravida massa nisl nullam proin. Lorem velit ullamcorper id mauris non mauris suspendisse sagittis. Iaculis metus malesuada non consectetur. Nunc sed massa justo dui id. Nisi cursus tortor orci amet lectus volutpat sed donec. Gravida ut cursus sed egestas velit sed id. Molestie varius neque pellentesque in eu aenean. Volutpat massa vel purus libero donec vestibulum dolor. Ornare risus pellentesque in aenean. Volutpat massa vel purus libero donec vestibulum dolor. Ornare risus pellentesque in aenean.</p>
                     </div>
-                    <img src="./img/futsal.png" alt="Lapangan Futsal" class="w-1/2 h-auto rounded-lg shadow-md mt-4 mr-4 ml-4">
+                    <img src="./img/futsal.png" alt="Lapangan Futsal" class="w-48 h-48 rounded-lg shadow-md mt-4 mr-4 ml-4">
                 </div>
                 <br>
             </div>
@@ -241,7 +237,6 @@
                     <p>(+62) 271-666-628</p>
                     <p>info@solotechnopark.id</p>
                 </div>
-
                 <!-- Peta Lokasi -->
                 <div class="flex justify-center">
                     <div class="w-full max-w-4xl">

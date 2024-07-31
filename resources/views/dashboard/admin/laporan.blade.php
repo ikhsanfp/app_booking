@@ -4,22 +4,25 @@
         <h3 class="font-bold ml-12 text-left mt-16 mb-5">Pilih Tanggal Reservasi Untuk Melihat Laporan</h3>
     </div>
     <form class="ml-12 mt-2" action="{{ route('cetak.pesananadmin') }}" method="GET">
-        <!-- Tampilkan pesan error jika ada -->
-        @if ($errors->has('tanggal'))
-            <div class="alert alert-danger">
-                {{ $errors->first('tanggal') }}
-            </div>
-        @endif
+
+        <!-- Input tanggal awal -->
+        <label for="start_date">Tanggal Awal:</label>
+        <input type="date" id="start_date" name="start_date" class="bg-gray-200" required>
         
-        <!-- Input jenis date -->
-        <input type="date" id="datepicker" name="tanggal" class="bg-gray-200" required>
+        <!-- Input tanggal akhir -->
+        <label for="end_date" class="ml-4">Tanggal Akhir:</label>
+        <input type="date" id="end_date" name="end_date" class="bg-gray-200" required>
+
         <!-- Tombol untuk submit -->
-        <input type="submit" value="Lihat Laporan" class="">
+        <input type="submit" value="Lihat Laporan" class="ml-4 bg-blue-500 text-white px-4 py-2 rounded">
     </form>
     @if (isset($alert))
     <script>
-        alert('{{ $alert }}');
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: '{{ $alert }}'
+        });
     </script>
 @endif
-    
 @endsection
