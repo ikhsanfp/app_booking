@@ -8,7 +8,7 @@
       <input type="hidden" name="id_pemain" id="id_pemain" value="{{ $post->id }}"/>
     </div>
   <div>
-    <h3 class="font-bold ml-12 text-left mt-10 mb-3">Tambah Pesananmu</h3>
+    <h3 class="font-bold ml-12 text-left mt-10 mb-3">Edit Pesanan</h3>
   </div>
   <div>
     <h3 class="font-semibold ml-12 text-left mt-2 mb-3">Jenis Lapangan</h3>
