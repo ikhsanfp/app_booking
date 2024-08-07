@@ -14,18 +14,6 @@ class RegisterController extends Controller
             'title' => 'Register'
         ]);
     }
-    // public function store(Request $request)
-    // {
-    //     // return $request->all();
-    //     $validatedData = $request->validate([
-    //         'namapemain' => 'required',
-    //         'email' => 'required|email',
-    //         'nohp' => 'required|min:10|max:255',
-    //         'password' => 'required|min:5|max:255',
-    //     ]);
-
-    //     User::create($validatedData);
-    // }
 
     protected function create(Request $request)
     {

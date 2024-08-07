@@ -1,9 +1,9 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
-
+<div class="bg-blue-100 min-h-screen pt-4">
 <div>
-    <h3 class="font-bold ml-12 text-left mt-16 mb-5">List Pesananmu</h3>
+    <h3 class="font-bold ml-12 text-left mt-12 mb-5">List Pesananmu</h3>
 </div>
 <div>
   <a href="/tambahpesan" class="font-bold text-white bg-blue-400 rounded px-5 py-2 ml-12 hover:bg-blue-800">
@@ -53,12 +53,12 @@
       @endphp
       @if($tanggalMain->isSameDay($sekarang) || $tanggalMain->isAfter($sekarang))
       <tr>
-          <th class="h-8 w-10 border border-gray-500">{{ $id_user->firstItem() + $key }}</th>
-          <th class="h-8 w-48 border border-gray-500">{{ $kodePesanan }}</th>
-          <th class="h-8 w-48 border border-gray-500">{{ $jenisLapangan}}</th>
-          <th class="h-8 w-48 border border-gray-500">{{ $post->tglmain}}</th>
-          <th class="h-8 w-48 border border-gray-500">{{ $startFormatted }} - {{ $endFormatted }}</th>
-          <th class="h-8 w-20 border border-gray-500">{{ $post->profile->namapemain }}</th>
+          <th class="h-8 w-10 border bg-white border-gray-500">{{ $id_user->firstItem() + $key }}</th>
+          <th class="h-8 w-48 border bg-white border-gray-500">{{ $kodePesanan }}</th>
+          <th class="h-8 w-48 border bg-white border-gray-500">{{ $jenisLapangan}}</th>
+          <th class="h-8 w-48 border bg-white border-gray-500">{{ $post->tglmain}}</th>
+          <th class="h-8 w-48 border bg-white border-gray-500">{{ $startFormatted }} - {{ $endFormatted }}</th>
+          <th class="h-8 w-20 border bg-white border-gray-500">{{ $post->profile->namapemain }}</th>
       </tr>
       @endif
     @endforeach
@@ -73,7 +73,7 @@
 <div class="mt-5 ml-12 max-w-5xl">
     {{ $id_user->links('pagination::tailwind') }}
 </div>  
-
+</div>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const alertBox = document.getElementById('alert');

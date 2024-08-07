@@ -1,5 +1,6 @@
 @extends('dashboard.admin.layouts.main')
 @section('container')
+<div class="bg-blue-100 min-h-screen pt-4">
     <div>
         <h3 class="font-bold ml-12 text-left mt-16 mb-5">Pilih Tanggal Reservasi Untuk Melihat Laporan</h3>
     </div>
@@ -16,7 +17,23 @@
         <!-- Tombol untuk submit -->
         <input type="submit" value="Lihat Laporan" class="ml-4 bg-blue-500 text-white px-4 py-2 rounded">
     </form>
-    @if (isset($alert))
+</div>
+@if (isset($alert))
+    <script>
+        const closeAlert = document.getElementById('close-alert');
+        closeAlert.addEventListener('click', () => {
+          const alert = document.getElementById('alert');
+          alert.style.display = 'none';
+        });
+      
+        function confirmDelete(event) {
+          if (!confirm('Are you sure you want to delete this record?')) {
+            event.preventDefault();
+          }
+        }
+      </script>
+@endif
+    {{-- @if (isset($alert))
     <script>
         Swal.fire({
             icon: 'error',
@@ -24,5 +41,5 @@
             text: '{{ $alert }}'
         });
     </script>
-@endif
+@endif --}}
 @endsection

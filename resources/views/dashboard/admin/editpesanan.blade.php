@@ -1,6 +1,6 @@
 @extends('dashboard.admin.layouts.main')
 @section('container')
-
+<div class="bg-blue-100 min-h-screen pt-4">
 <form action="{{ route('pesanan.update', $post->id) }}" method="POST" onsubmit="return validateForm()">
   @csrf
   @method('put')
@@ -10,7 +10,7 @@
   </div>
   <div class="ml-12 mt-2">
       <h3 class="font-semibold text-left mb-3">Jenis Lapangan</h3>
-      <div class="custom-select border border-zinc-400 rounded-sm w-46">
+      <div class="custom-select border border-zinc-400 rounded-sm w-46 bg-white">
           <select name="jenislap" id="jenislap" class="ml-2 mt-3 mb-3">
               <option value="">Pilih Lapangan</option>
               <option value="Lapangan Basket" {{ $post->jenislap == 'Lapangan Basket' ? 'selected' : '' }}>Lapangan Basket</option>
@@ -24,7 +24,7 @@
   </div>
   <div class="ml-12 mt-2">
       <h3 class="font-semibold text-left mb-3">Start</h3>
-      <div class="flex custom-select border border-zinc-400 rounded-sm w-46">
+      <div class="flex custom-select border border-zinc-400 rounded-sm w-46 bg-white">
           <select name="start" id="start" class="ml-2 mt-3 mb-3">
               <option value="">Start</option>
               @for ($i = 9; $i <= 20; $i++)
@@ -50,15 +50,13 @@
   </div>
 </form>
 <div id="errorMessages" class="ml-12 mt-4"></div>
-
+</div>
 <script>
     $(document).ready(function() {
         $('#updateForm').on('submit', function(e) {
             e.preventDefault();
-
             var form = $(this);
             var actionUrl = form.attr('action');
-
             $.ajax({
                 url: actionUrl,
                 method: 'POST',

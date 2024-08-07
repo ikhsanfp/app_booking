@@ -1,7 +1,53 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
-<form action="/addpesan" method="POST" onsubmit="return validateForm()">
+<div class="bg-blue-100 min-h-screen pt-4">
+  <form action="/addpesan" method="POST" onsubmit="return validateForm()">
+    @csrf
+    <input type="hidden" name="id_pemain" id="id_pemain" value="{{ $id_pemain }}"/>
+    <div class="ml-12 mt-10">
+      <h3 class="font-bold text-left mb-3">Tambah Pesananmu</h3>
+    </div>
+    <div class="ml-12 mt-2">
+      <h3 class="font-semibold text-left mb-3">Jenis Lapangan</h3>
+      <div class="custom-select border bg-white border-zinc-400 rounded-sm w-46">
+        <select name="jenislap" id="jenislap" class="ml-2 mt-3 mb-3">
+          <option value="">Pilih Lapangan</option>
+          <option value="Lapangan Basket">Lapangan Basket</option>
+          <option value="Lapangan Futsal">Lapangan Futsal</option>
+        </select>
+      </div>
+    </div>
+    <div class="ml-12 mt-2">
+      <h3 class="font-semibold text-left mb-3">Tanggal Main</h3>
+      <input class="p-2 border border-zinc-400 rounded-sm w-48" type="date" id="tglmain" name="tglmain" />
+    </div>
+    <div class="ml-12 mt-2">
+      <h3 class="font-semibold text-left mb-3">Start</h3>
+      <div class="flex custom-select border bg-white border-zinc-400 rounded-sm w-46">
+        <select name="start" id="start" class="ml-2 mt-3 mb-3">
+          <option value="">Start</option>
+          @for ($i = 9; $i <= 20; $i++)
+            <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}.00</option>
+          @endfor
+        </select>
+        <h1 class="mx-3 mt-1">_</h1>
+        <select name="end" id="end" class="ml-2 mt-3 mb-3">
+          <option value="">End</option>
+          @for ($i = 10; $i <= 21; $i++)
+            <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}.00</option>
+          @endfor
+        </select>
+      </div>
+    </div>
+  
+    <div class="ml-12 mt-3">
+      <a href="/pesan" class="font-bold text-white bg-red-400 rounded px-5 py-2  hover:bg-red-800">Batal</a>
+      <button class="font-bold text-white bg-green-400 rounded px-5 py-2 hover:bg-green-800" type="submit">Simpan</button>
+    </div>
+  </form>
+  </div>
+{{-- <form action="/addpesan" method="POST" onsubmit="return validateForm()">
   @csrf
   <input type="hidden" name="id_pemain" id="id_pemain" value="{{ $id_pemain }}"/>
   <div class="ml-12 mt-10">
@@ -44,7 +90,7 @@
     <a href="/pesan" class="font-bold text-white bg-red-400 rounded px-5 py-2  hover:bg-red-800">Batal</a>
     <button class="font-bold text-white bg-green-400 rounded px-5 py-2 hover:bg-green-800" type="submit">Simpan</button>
   </div>
-</form>
+</form> --}}
 {{-- <script>
    document.addEventListener("DOMContentLoaded", function() {
     var inputTime = document.getElementById("jam");

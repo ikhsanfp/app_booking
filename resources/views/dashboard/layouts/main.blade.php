@@ -7,6 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <title>Solo Technopark | {{ $title }}</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <link rel="stylesheet" href="/css/main.css">
     <style>
       /* Style untuk label */
@@ -91,10 +94,10 @@ input[type="time"] {
     </style>
   </head>
 
-  <body class=""">
+  <body class="">
     @include('dashboard.layouts.navbar')
 
-    <div class="container mt-4 max-w-full">
+    <div class="container mt-0 max-w-full">
         @yield('container')
     </div>
         

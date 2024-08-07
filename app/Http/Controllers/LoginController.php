@@ -35,29 +35,8 @@ class LoginController extends Controller
         }
 
         return back()->with('errors', 'Email atau password yang Anda masukkan salah!');
-
-        // if(Auth::attempt($credentials)){
-        //     $request->session()->regenerate();
-        //     return redirect()->intended('/home');
-        // }
-
-        // return back()->with('loginError', 'LOGIN FAILED!');
     }
-
-    // public function store(Request $request)
-    // {
-    //     $credentials = ([
-    //         'email' => $request->input('email'),
-    //         'password' => $request->input('password')
-    //     ]);
-
-    //     if (Auth::attempt($credentials)) {
-    //         $request->session()->regenerate();
-    //         return redirect()->intended('/home');
-    //     }
-
-    //     return back()->with('loginError', 'LOGIN FAILED!');
-    // }
+  
     public function logout()
     {
         Auth::logout();

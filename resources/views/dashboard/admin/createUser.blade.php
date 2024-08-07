@@ -1,7 +1,7 @@
 @extends('dashboard.admin.layouts.main')
 @section('container')
+<div class="bg-blue-100 min-h-screen pt-4">
 <div class="ml-12">
-  
 <h3 class="font-bold ml-12 text-left mt-12 mb-5">List Akun</h3>
 <div class="overflow-x-auto ml-12 mr-12">
 <table class="min-w-[800px]">
@@ -101,7 +101,7 @@
 <div class="w-7/12 mt-5 ml-12 mr-40">
   {{ $pesan->links('pagination::tailwind') }}
   </div>        
-  
+</div>
   <script>
     function myFunction() {
       if(!confirm("Are you sure you want to delete this record?"))

@@ -4,8 +4,5 @@
       <li>Design & Developed by IT Solo Technopark</li>
   </ul>
 </div>
-
 <div class="pb-12">
-  <!-- Your content goes here -->
-  <!-- Ensure there's enough content to make the page scrollable -->
 </div>
