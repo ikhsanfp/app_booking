@@ -33,7 +33,7 @@
         }
       </script>
 @endif
-    {{-- @if (isset($alert))
+    @if (isset($alert))
     <script>
         Swal.fire({
             icon: 'error',
@@ -41,5 +41,5 @@
             text: '{{ $alert }}'
         });
     </script>
-@endif --}}
+@endif
 @endsection

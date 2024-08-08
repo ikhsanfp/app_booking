@@ -76,21 +76,7 @@ class PesanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(Request $request)
-    // {
-    //     $validateData = $request->validate([
-    //         'jenislap' => 're   quired',
-    //         'tglmain' => 'required',
-    //         'start' => 'required',
-    //         'end' => 'required',
-    //         'id_pemain' => 'required',
-    //     ]);
-    //     // dd($validateData);
-    //     Pesan::create($validateData);
-    //     return redirect('/pesan')->with('success', 'Pesan lapangan berhasil dibuat.');
-    //     // return redirect()->route('dashboard.pesan')
-    //     //     ->with('success', 'Pesan lapangan berhasil dibuat.');
-    // }
+
     public function store(Request $request)
     {
     // Cek apakah ada field yang belum diisi
@@ -120,7 +106,7 @@ class PesanController extends Controller
     // Memeriksa apakah waktu mulai dan selesai tidak melewati waktu saat ini untuk hari ini
     if ($validatedData['tglmain'] == $tanggalSaatIni) {
         if ($validatedData['start'] <= $jamSaatIni && $menitSaatIni >0) {
-            return redirect()->route('pesan.create')
+            return redirect()->route('tambahpesan')
                              ->withErrors(['error' => 'Tidak bisa memesan pada jam ini.'])
                              ->withInput();
         }
@@ -128,7 +114,7 @@ class PesanController extends Controller
 
     // Cek waktu jika end lebih kecil atau sama dengan start
     if ($validatedData['end'] <= $validatedData['start']) {
-        return redirect()->route('pesan.create')
+        return redirect()->route('tambahpesan')
                          ->withErrors(['error' => 'Tolong Perhatikan Waktu start dan end nya'])
                          ->withInput();
     }
@@ -141,7 +127,7 @@ class PesanController extends Controller
         if (($validatedData['start'] >= $order->start && $validatedData['start'] < $order->end) ||
             ($validatedData['end'] > $order->start && $validatedData['end'] <= $order->end) ||
             ($validatedData['start'] <= $order->start && $validatedData['end'] >= $order->end)) {
-            return redirect()->route('pesan.create')
+            return redirect()->route('tambahpesan')
                              ->withErrors(['error' => 'Lapangan sudah dipesan pada rentang waktu yang sama.'])
                              ->withInput();
         }

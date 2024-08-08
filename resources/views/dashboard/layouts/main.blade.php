@@ -94,7 +94,7 @@ input[type="time"] {
     </style>
   </head>
 
-  <body class="">
+  <body class="bg-blue-100">
     @include('dashboard.layouts.navbar')
 
     <div class="container mt-0 max-w-full">

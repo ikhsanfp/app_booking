@@ -25,6 +25,15 @@
           }
         }
       </script>
+          @if (isset($alert))
+          <script>
+              Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: '{{ $alert }}'
+              });
+          </script>
+      @endif
 </div>
 @endif
 @endsection
